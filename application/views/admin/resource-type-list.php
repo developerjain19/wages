@@ -51,8 +51,8 @@
                                                 echo  'No data';
                                             }
                                             ?>
-                                    </table>
-                                    </tbody>
+
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

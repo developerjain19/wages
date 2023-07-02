@@ -33,14 +33,16 @@
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            $diva=[];
+
                                             if (!empty($staff)) {
                                                 foreach ($staff as $row) {
+                                                    $diva = [];
+
                                                     $division =  getAllRow('tbl_division');
                                                     if ($division != '') {
                                                         foreach ($division as $divi) {
                                                             $optionss = json_decode($row['division'], true);
-                                                            if ($optionss != null) {
+                                                            if (!empty($optionss)) {
                                                                 if (in_array($divi['did'], $optionss)) {
                                                                     $diva[] = $divi['name'];
                                                                 }
@@ -48,6 +50,7 @@
                                                         }
                                                     }
                                                     $di2 =  implode(',', $diva);
+
                                             ?>
                                                     <tr class="staff" data-id="<?= $row['uid'] ?>">
                                                         <td><?= $i ?></td>

@@ -14,9 +14,11 @@
                                         <?php } ?><?= ucfirst($title) ?>
                                 </h4>
                                 <?php if ($tag == 'edit') {
+                                    if ($this->delete == '1') {
                                 ?>
-                                    <a href="<?php echo base_url() . 'resource-type-list?BdID=' . encryptId($resource[0]['rid']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
-                                <?php } else { ?>
+                                        <a href="<?php echo base_url() . 'resource-type-list?BdID=' . encryptId($resource[0]['rid']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
+                                    <?php }
+                                } else { ?>
                                     <a href="<?= base_url('resource-type-list') ?>" class="btn btn-success btn-sm">Resource Type List <i class="fa fa-list"></i></a>
                                 <?php
                                 }
@@ -96,7 +98,7 @@
                         <div class="col-xl-6 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Update Insentives </h4>
+                                    <h4 class="card-title">Update Incentives </h4>
                                     <div class="msg"></div>
                                 </div>
                                 <div class="card-body">
@@ -121,9 +123,9 @@
 
                                                         <tr id="<?= $row['id'] ?>">
 
-                                                            <td> <input type="text" class="form-control" id="min_qty<?= $row['id'] ?>" name="min_qty" value="<?= $row['min_qty'] ?>"></td>
-                                                            <td> <input type="text" class="form-control" id="max_qty<?= $row['id'] ?>" name="max_qty" value="<?= $row['max_qty'] ?>"> </td>
-                                                            <td><input type="text" class="form-control" id="amount<?= $row['id'] ?>" name="amount" value="<?= $row['amount'] ?>"></td>
+                                                            <td> <input type="number" class="form-control" id="min_qty<?= $row['id'] ?>" name="min_qty" value="<?= $row['min_qty'] ?>" ></td>
+                                                            <td> <input type="number" class="form-control" id="max_qty<?= $row['id'] ?>" name="max_qty" value="<?= $row['max_qty'] ?>"> </td>
+                                                            <td><input type="number" class="form-control" id="amount<?= $row['id'] ?>" name="amount" value="<?= $row['amount'] ?>"></td>
                                                             <td>
                                                                 <button type="button" class="btn btn-xs btn-info light me-1 submit_form" data-id="<?= $row['id'] ?>">
                                                                     </span>Save</button>
@@ -141,8 +143,8 @@
                                                 }
                                                 ?>
 
-                                        </table>
-                                        </tbody>
+
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

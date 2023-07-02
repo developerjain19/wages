@@ -15,14 +15,20 @@
                                         <?php } ?><?= $title ?>
                                 </h4>
 
-                                <?php if ($tag == 'edit') {
-                                ?>
-                                    <a href="<?php echo base_url() . 'staff-list?BdID=' . encryptId($staff[0]['uid']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
-                                <?php } else { ?>
-                                    <a href="<?= base_url('staff-list') ?>" class="btn btn-success btn-sm">Staff List <i class="fa fa-list"></i></a>
-                                <?php
-                                }
-                                ?>
+                                <div>
+                                    <?php if ($tag == 'edit') {
+                                    ?>
+                                        <a href="<?php echo base_url() . 'staff-change-password/' . $staff[0]['uid'] ?>" class="mr-5"><img src="<?= base_url() ?>assets/passicon.png" alt="password icon" height="30px"> </a>
+
+                                        <a href="<?php echo base_url() . 'staff-list?BdID=' . encryptId($staff[0]['uid']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i> </a>
+
+
+                                    <?php } else { ?>
+                                        <a href="<?= base_url('staff-list') ?>" class="btn btn-success btn-sm">Staff List <i class="fa fa-list"></i></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
 
 
                             </div>
@@ -49,9 +55,6 @@
                                                 <input type="email" id="email" name="email" class="form-control" value="<?= (($tag == 'edit') ? $staff[0]['email'] : '')  ?>">
                                             </div>
                                         </div>
-
-
-
 
                                         <?php if ($tag == 'add') { ?>
 
@@ -131,9 +134,13 @@
 
                                         <div class="row">
                                             <div class="col-sm-5"></div>
-                                            <div class="col-sm-5">
-                                                <input type="submit" value="Submit" class="btn btn-info">
-                                            </div>
+                                            <?php if ($this->edit == '1') { ?>
+                                                <div class="col-sm-5">
+                                                    <input type="submit" value="Submit" class="btn btn-info">
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
                                     </form>
                                 </div>

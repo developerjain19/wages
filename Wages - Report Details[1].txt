@@ -1,0 +1,59 @@
+Admin
+
+Employee Billing(Select Month , division)
+Sr	|	Name	|	Division	|	TotalWeight	|	Salary	| Incentives	|
+
+
+QC(Select From Date - To Date) division wise
+Sr	|	From |	To	|	TotalWeight	|	Accepted	|	Rejected	|	Division	|	Accepted%	|	Rejection%	|	
+Bags created 	|  Pending(in Kgs)	|	FC Rejected(new)	|	QC Weight(new)	|
+
+Employee Attendance (Select filter Division Name, Date From - To)
+Sr	|	From	|	To	|	Name	|	Division(if selected)	|	Present Days	|	Absent Days	|	Attendance% 4 
+
+
+
+
+Work update(Select filter Division, Name, Date From - To)
+Sr	|	Date	|	Name	|	Weight(in KGs)	|	Division	|	Accepted	|	Rejected	|	Accepted%	|	Rejection%	
+|	Need to Pack
+
+
+
+Raw material(Select Filter Division, Date From - To)
+Sr	|	From	|	To	|	Total RAW 	|	QC Target(10%)	|	Division	|	Acheived Target
+raw material - target
+
+800  10%  80 =>
+400  qc qt sum 
+
+
+Addition(Dispatch Report)(Select Filter Division)
+Sr	|	From Date 	|	To Date	|	Division	|	Total Bags	|	Bags Dispatched	|	Bags Pending
+
+
+
+HR/Team Lead
+Attendance (Select Date From - To, Division - Auto Select|Select)
+Sr	|	From Date	|	To Date	  |	Name	|	Present Days	|	Absent Days	|	Attendance%	|	Division(if selected)
+
+
+
+Labour Wise Productivity (Select Date From - To, Division - Auto Select|Select)
+Sr	|	From Date	|	To Date	|	Name	|	Weight	|	Accepted	|	Rejected	|	Accepted%	|	
+Rejection%	|	Need to Pack
+
+
+	
+QC
+
+Open List(Select Date From - To, Division - Auto Select|Select)
+Sr	|	From Date	|	To Date	|	Pending(in kgs)	|	Division(if selected) 
+correction(date , labour , pending in kgs)
+
+
+Quality Check (Select Date From - To, Division - Auto select|Select)
+Sr	|	From Date	|	To Date	|	Name(new - not required)	|	Division	|	Total weight	
+|	FC Rejected(new)	|	QC Weight(new)	|	Rejected	|	Accepted	|	Accepted%	|	Rejection%	
+| Bags Created	|	Pending(in Kgs)
+

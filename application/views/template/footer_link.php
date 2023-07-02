@@ -19,6 +19,22 @@
 
 <script src="<?= base_url() ?>assets/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/js/plugins-init/datatables.init.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+<script>
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf'
+        ]
+    });
+</script>
 
 <script>
     jQuery(document).ready(function() {
@@ -34,11 +50,18 @@
     }, 4000);
 
 
-    var userPosition = <?= sessionId('position') ?>
+    $(document).ready(function() {
+        // Add change event listener to radio buttons
+        $('.rediobuttons').change(function() {
+            // Get the selected value
+            var selectedValue = $('input[name=switchacc]:checked').val();
 
-    if(userPosition == '1')
-    {
-        
-    }
-   
+            if (selectedValue == '1') {
+                window.location.href = "<?= base_url('update_type') ?>";
+            } else {
+
+                window.location.href = "<?= base_url('select-divisions?accinfo=') ?>" + selectedValue;
+            }
+        });
+    });
 </script>

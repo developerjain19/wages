@@ -7,14 +7,18 @@
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-
-
                     <div class="col-12">
                         <div class="card">
+                            <?php if ($this->session->userdata('msg') != '') { ?>
+                                <?= $this->session->userdata('msg'); ?>
+                            <?php  }
+                            $this->session->unset_userdata('msg'); ?>
                             <div class="card-header">
                                 <h4 class="card-title"><?= $title ?></h4>
-                                <a href="<?= base_url('work-update-add') ?>" class="btn btn-success btn-sm">Add Work Update <i class="fa fa-plus"></i></a>
-
+                                <?php if (sessionId('position') != '5') { ?>
+                                    <a href="<?= base_url('work-update-add') ?>" class="btn btn-success btn-sm">Add Work Update <i class="fa fa-plus"></i></a>
+                                <?php }
+                                ?>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -30,7 +34,7 @@
                                                 <th>Resource Type</th>
                                                 <th>Wages</th>
                                                 <th>Incentive</th>
-
+                                                <th>Attendance</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -42,10 +46,10 @@
                                                     $divOut = getRowById('tbl_division', 'did', $row['division_out']);
                                                     $labour = getRowById('tbl_labour', 'eid', $row['labour']);
                                             ?>
-                                                    <tr>
+                                                    <tr class="<?= ((sessionId('position') == '5') ? '' : 'work_update'); ?>" data-id="<?= $row['wid'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= convertDatedmy($row['create_date'])  ?></td>
-                                                        
+
                                                         <td><?= $labour[0]['name'] ?>
                                                         </td>
                                                         <td><?= $divIn[0]['name'] ?>
@@ -59,6 +63,8 @@
                                                         <td><?= $row['wages'] ?>
                                                         </td>
                                                         <td><?= $row['incentive'] ?>
+                                                        </td>
+                                                        <td> <?= (($row['incentive'] == '1') ? 'Present' : (($row['incentive'] == '2') ? 'Half Day'  : 'Absent')) ?>
                                                         </td>
 
                                                     </tr>
@@ -82,8 +88,16 @@
             </div>
             <?php $this->load->view('template/footer'); ?>
         </div>
-        <!-- Required vendors -->
         <?php $this->load->view('template/footer_link'); ?>
+        <script>
+            $(document).ready(function() {
+                $('.work_update').on('click', function() {
+                    var work_updateId = $(this).data('id');
+
+                    window.location.href = "<?= base_url('work-update-edit/') ?>" + work_updateId;
+                });
+            });
+        </script>
 </body>
 
 </html>

@@ -6,7 +6,6 @@ class Login extends CI_Controller
     {
         parent::__construct();
         date_default_timezone_set("Asia/Kolkata");
-       
     }
     public function index()
     {
@@ -17,7 +16,6 @@ class Login extends CI_Controller
 
             // echo password_hash('12345', PASSWORD_DEFAULT);
             $this->load->view('admin/login', $get);
-            
         }
     }
     public function adminlogin()
@@ -39,8 +37,15 @@ class Login extends CI_Controller
                 } else if ($data[0]['status'] == '0') {
                     flashData('login_error', 'You are blocked.');
                 } else {
-                    $this->session->set_userdata(array('id' => $id, 'email' => $email, 'name' => $data[0]['name'], 'position' => $data[0]['position'],  'username' => $data[0]['username']));
-                    redirect('dashboard');
+                    $this->session->set_userdata(array('id' => $id, 'email' => $email, 'name' => $data[0]['name'], 'position' => $data[0]['position'], 'switch' => $data[0]['swich_permission']));
+
+                    if ($data[0]['position'] == '3') {
+                        redirect('select-division');
+                    } elseif ($data[0]['position'] == '5') {
+                        redirect('select-division');
+                    } else {
+                        redirect('dashboard');
+                    }
                 }
             } else {
                 flashData('login_error', 'Enter a valid Username ');

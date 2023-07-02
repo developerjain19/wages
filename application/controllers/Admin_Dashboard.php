@@ -9,18 +9,54 @@ class Admin_Dashboard extends CI_Controller
             redirect(base_url());
         }
         date_default_timezone_set("Asia/Kolkata");
-
         $per = getRowById('tbl_roles_permissions', 'role', sessionId('position'))[0];
         $this->workUpdate = $per['work_update'];
         $this->QC = $per['qc'];
         $this->edit = $per['edit'];
         $this->delete = $per['delete'];
     }
-
-
     public function index()
     {
         $data['title'] = "Home | Dashboard";
+        $date = date('Y-m-d');
+        $from = date('Y-m-01');
+        $to = date('Y-m-30');
+        if (sessionId('position') == '1' || sessionId('position') == '2') {
+
+            $data['absent'] =   $this->CommonModal->runQuery("SELECT SUM(CASE WHEN attendance = '0' THEN 1 ELSE 0 END) AS total_absent FROM `tbl_work_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' ");
+
+            $data['present'] =   $this->CommonModal->runQuery("SELECT SUM(CASE WHEN attendance = '1' THEN 1 ELSE 0 END) AS total_present FROM `tbl_work_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' ");
+
+            $data['qcqty'] =   $this->CommonModal->runQuery("SELECT SUM(`quantity`) AS qty FROM `tbl_qc_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' ");
+
+            $data['totalqty'] =   $this->CommonModal->runQuery("SELECT SUM(`quantity`) AS tqty FROM `tbl_work_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') = '" . $date . "' ");
+        } else  if (sessionId('position') == '5') {
+            $data['qcqty'] =   $this->CommonModal->runQuery("SELECT SUM(`quantity`) AS qty FROM `tbl_qc_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' AND `division_id` = '" . sessionId('setdivision') . "' ");
+
+            $data['target'] =  $this->CommonModal->getRowById('tbl_target', 'id', 1)[0];
+
+            $data['qc'] =   $this->CommonModal->runQuery("SELECT  (SUM(`qc_accepted`) % (SUM(`quantity`) * 100)) AS accepted, (SUM(`qc_rejected`) % (SUM(`quantity`) * 100)) AS rejected FROM `tbl_qc_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' AND `division_id` = '" . sessionId('setdivision') . "' ");
+
+            $data['monthlyqc'] =   $this->CommonModal->runQuery("SELECT  (SUM(`qc_accepted`) % (SUM(`quantity`) * 100)) AS accepted, (SUM(`qc_rejected`) % (SUM(`quantity`) * 100)) AS rejected FROM `tbl_qc_update` WHERE DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `division_id` = '" . sessionId('setdivision') . "' ");
+
+            $data['attendance'] = $this->CommonModal->runQuery("SELECT SUM(CASE WHEN `tbl_work_update`.`attendance` = '0' THEN 1 ELSE 0 END) AS total_absent, SUM(CASE WHEN `tbl_work_update`.`attendance` = '1' THEN 1 ELSE 0 END) AS total_present FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id` WHERE DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') =  '" . $date . "' AND `tbl_qc_update`.`division_id` = '" . sessionId('setdivision') . "'  group by `tbl_work_update`.`labour` ");
+
+            $data['labour'] = $this->CommonModal->getRowById('tbl_labour', 'division',  sessionId('setdivision'));
+        } else {
+
+            $data['tlabour'] = $this->CommonModal->runQuery("SELECT COUNT(*) AS total_labour FROM `tbl_labour` WHERE division = '" . sessionId('setdivision') . "' ")[0];
+
+            $data['qcqty'] =   $this->CommonModal->runQuery("SELECT  SUM(`tbl_work_update`.`quantity`) AS qty , SUM(`tbl_qc_update`.`packed`) AS packed_qty FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id` WHERE DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') >= DATE_FORMAT(CURDATE() - INTERVAL DAY(CURDATE())-1 DAY, '%Y-%m-%d') AND DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') < DATE_FORMAT(LAST_DAY(CURDATE()) + INTERVAL 1 DAY, '%Y-%m-%d')AND `tbl_qc_update`.`division_id` = '" . sessionId('setdivision') . "' group by `tbl_work_update`.`labour`")[0];
+
+            $data['attendance'] =  $this->CommonModal->runQuery("SELECT  `tbl_labour`.`name` , `tbl_labour`.`number` , `tbl_work_update`.`attendance` ,  SUM(CASE WHEN `tbl_work_update`.`attendance` = '0' THEN 1 ELSE 0 END) AS total_absent , SUM(CASE WHEN `tbl_work_update`.`attendance` = '1' THEN 1 ELSE 0 END) AS total_present , SUM(CASE WHEN `tbl_work_update`.`attendance` IN ('1', '2') THEN 1 ELSE 0 END) AS total_available FROM `tbl_work_update` JOIN tbl_labour ON `tbl_work_update`.`labour` = `tbl_labour`.`eid` WHERE DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') = '" . $date . "' AND `tbl_labour`.`division` = '" . sessionId('setdivision') . "'");
+
+            $data['tproductivity'] =   $this->CommonModal->runQuery("SELECT  SUM(`tbl_work_update`.`quantity`) AS qty , SUM(`tbl_qc_update`.`packed`) AS packed_qty ,  FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id` WHERE DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') = '" . $date . "' AND `tbl_qc_update`.`division_id` = '" . sessionId('setdivision') . "' group by `tbl_work_update`.`labour`");
+
+
+
+            $data['monthlyqc'] = $this->CommonModal->runQuery("SELECT SUM(`tbl_qc_update`. `qc_accepted` ) as accepted,SUM(`tbl_qc_update`. `qc_rejected` ) as rejected FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id`  WHERE  DATE_FORMAT(`tbl_work_update`.`create_date`, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `tbl_qc_update`.`division_id` = '" . sessionId('setdivision') . "'  group by `tbl_work_update`.`labour`");
+        }
+
         $this->load->view('admin/dashboard', $data);
     }
     public function work_update()
@@ -32,11 +68,16 @@ class Admin_Dashboard extends CI_Controller
     public function work_update_add()
     {
         $data['title'] = "Work Update";
+        $data['tag'] = 'add';
         if (count($_POST) > 0) {
             $post = $this->input->post();
+
             $insert = $this->CommonModal->insertRowReturnId('tbl_work_update', $post);
+            // print_r($post);
+            // exit();
+
             if ($insert) {
-                $this->session->set_userdata('msg', '<div class="alert alert-success">Work Update Successfully</div>');
+                $this->session->set_userdata('msg', '<div class="alert alert-success">Work Update Added Successfully</div>');
             } else {
                 $this->session->set_userdata('msg', '<div class="alert alert-danger">Something went wrong</div>');
             }
@@ -44,10 +85,87 @@ class Admin_Dashboard extends CI_Controller
         }
         $this->load->view('admin/work-update', $data);
     }
+
+    public function edit_work_update($id)
+    {
+        $data['title'] = "Work Update";
+        $tid = $id;
+        $data['work'] = $this->CommonModal->getRowById('tbl_work_update', 'wid', $tid)[0];
+
+        // print_r( $data['work']);
+        $data['tag'] = 'edit';
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+
+            print_r($post);
+            $update = $this->CommonModal->updateRowById('tbl_work_update', 'wid', $tid, $post);
+            echo "update";
+
+            if ($update) {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">Work Update Updated Successfully</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">Work Update Updated Successfully</div>');
+            }
+            redirect('work-update');
+        } else {
+            $this->load->view('admin/work-update', $data);
+        }
+    }
+
     public function qc_update()
     {
-        $data['title'] = "QC Update";
-        $this->load->view('admin/qc-update', $data);
+        $data['title'] = 'QC Update';
+        // $data['work'] = $this->CommonModal->getRowById('tbl_work_update', 'wid', $tid)[0];
+        $data['labour'] = $this->CommonModal->getRowById('labour', 'division', sessionId('setdivision'));
+        $data['division'] = $this->CommonModal->getRowById('division', 'did', sessionId('setdivision'))[0];
+        $data['tag'] = 'add';
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+            // $post['work_id'] =  $id;
+            $insert = $this->CommonModal->insertRowReturnId('tbl_qc_update', $post);
+            if ($insert) {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">QC  Updated Added Successfully</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">QC Updated  Added Successfully</div>');
+            }
+            redirect('qc-update-list');
+        } else {
+            $this->load->view('admin/qc-update', $data);
+        }
+    }
+    public function qc_update_list()
+    {
+        $data['title'] = "QC Update List";
+        $BdID = $this->input->get('BdID');
+        if (decryptId($BdID) != '') {
+            $delete = $this->CommonModal->deleteRowById('tbl_qc_update', array('id' => decryptId($BdID)));
+            redirect('qc-update-list');
+            exit;
+        }
+        $data['qc'] = $this->CommonModal->getAllRowsInOrder('tbl_qc_update', 'id', 'DESC');
+        $this->load->view('admin/qc-update-list', $data);
+    }
+    public function qc_update_edit($id)
+    {
+        $data['title'] = 'Update Resource Type';
+        $tid = $id;
+        $data['labour'] = $this->CommonModal->getRowById('labour', 'division', sessionId('setdivision'));
+        $data['division'] = $this->CommonModal->getRowById('division', 'did', sessionId('setdivision'))[0];
+        $data['qc'] = $this->CommonModal->getRowById('tbl_qc_update', 'id', $tid)[0];
+        $data['tag'] = 'edit';
+        if (count($_POST) > 0) {
+            $post = $this->input->post();
+            $table = "tbl_qc_update";
+            $update = $this->CommonModal->updateRowById($table, 'id', $tid, $post);
+            if ($update) {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">QC  Update edit Successfully</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">QC  Update edit Successfully</div>');
+            }
+            redirect(base_url('qc-update-list'));
+        } else {
+            $this->load->view('admin/qc-update', $data);
+        }
     }
     public function staff_registration()
     {
@@ -56,6 +174,11 @@ class Admin_Dashboard extends CI_Controller
         if (count($_POST) > 0) {
             $post = $this->input->post();
             $post['status'] = '1';
+            if ($post['position'] == '1') {
+
+                $post['swich_permission'] = '1';
+            }
+
             $post['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
             $post['division'] = json_encode($post['division']);
             $insert = $this->CommonModal->insertRowReturnId('tbl_staff', $post);
@@ -188,7 +311,15 @@ class Admin_Dashboard extends CI_Controller
             redirect(base_url('labour-list'));
             exit;
         }
-        $data['labour'] = $this->CommonModal->getAllRowsInOrder('tbl_labour', 'eid', 'DESC');
+        if (sessionId('position') == '1' || sessionId('position') == '2') {
+
+            $data['labour'] = $this->CommonModal->getAllRowsInOrder('tbl_labour', 'eid', 'DESC');
+        } else {
+            $data['labour'] = $this->CommonModal->getRowById('tbl_labour', 'division',  sessionId('setdivision'));
+        }
+
+
+
         $this->load->view('admin/labour-list', $data);
     }
     public function division_add()
@@ -347,7 +478,6 @@ class Admin_Dashboard extends CI_Controller
         $getdataa = $this->CommonModal->runQuery('SELECT * FROM `tbl_resource_type` `res` JOIN `tbl_insentive` `ins` ON `res`.`rid` = `ins`.`rid` WHERE `ins`.`min_qty` <= ' . $qty . ' AND `ins`.`max_qty` >= ' . $qty);
         echo json_encode($getdataa[0]);
     }
-
     public function my_profile()
     {
         $data['title'] = "My Profile";
@@ -355,7 +485,6 @@ class Admin_Dashboard extends CI_Controller
         $data['tag'] = 'edit';
         if (count($_POST) > 0) {
             $post = $this->input->post();
-
             $staff_id = $this->CommonModal->updateRowById('staff', 'uid', sessionId('id'), $post);
             if ($staff_id) {
                 $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">Profile Updated Successfully</div>');
@@ -367,7 +496,6 @@ class Admin_Dashboard extends CI_Controller
             $this->load->view('admin/my_profile', $data);
         }
     }
-
     public function change_password()
     {
         if (count($_POST) > 0) {
@@ -388,5 +516,231 @@ class Admin_Dashboard extends CI_Controller
                 redirect('my-profile');
             }
         }
+    }
+    public function select_division()
+    {
+        $data['title'] = "Choose Division";
+        $division = $this->input->get('division');
+        $dvname =  getRowById('tbl_division', 'did', decryptId($division))[0];
+        if (decryptId($division) != '') {
+            $this->session->set_userdata(array('setdivision' => decryptId($division), 'division_name' => $dvname['name']));
+            redirect('dashboard');
+            exit;
+        }
+        $data['staff'] = $this->CommonModal->getRowById('staff', 'uid', sessionId('id'))[0];
+        $this->load->view('admin/select-division', $data);
+    }
+    public function select_divisions()
+    {
+        $data['title'] = "Choose Division";
+        $data['accinfo'] = $this->input->get('accinfo');
+        $division = $this->input->get('division');
+        $position = $this->input->get('position');
+        $dvname =  getRowById('tbl_division', 'did', $division)[0];
+        if (decryptId($division) != '') {
+            $this->session->unset_userdata('position');
+            $this->session->set_userdata(array('setdivision' => decryptId($division), 'division_name' => $dvname['name'], 'position' =>  $position));
+            redirect('dashboard');
+            exit;
+        }
+        $data['staff'] = $this->CommonModal->getRowById('staff', 'uid', sessionId('id'))[0];
+        $this->load->view('admin/select-admin-division', $data);
+    }
+
+
+    public function staff_password($tid)
+    {
+
+
+        $data['title'] = "Staff Change Password";
+        $data['staff'] = $this->CommonModal->getRowById('staff', 'uid', $tid)[0];
+        if (count($_POST) > 0) {
+
+            $newpassword = $this->input->post('newpassword');
+            $confirmnewpassword = $this->input->post('confirmnewpassword');
+            $getCustomer = $this->CommonModal->getRowById('staff', 'uid', $tid)[0];
+
+            if ($newpassword === $confirmnewpassword) {
+                $updatePassword = $this->CommonModal->updateRowById('staff', 'uid', $tid, array('password' => password_hash($newpassword, PASSWORD_DEFAULT)));
+                $this->session->set_userdata('msg', '<div class="alert alert-success alert-dismissible fade show">Password changed successfully</div>');
+            } else {
+                $this->session->set_userdata('msg', '<div class="alert alert-danger">New password and confirm password not matched Successfully</div>');
+            }
+            redirect('staff-list');
+        } else {
+            $this->load->view('admin/staff-password', $data);
+        }
+    }
+    public function reporting()
+    {
+        $data['title'] = "Reporting";
+
+        $this->load->view('admin/reporting', $data);
+    }
+
+
+    public function employee_billing()
+    {
+        $data['title'] = "Employee Billing";
+        $data['month'] = $this->input->get('month');
+        $division = $this->input->get('division');
+        $data['div'] = decryptId($division);
+        if (decryptId($division) != '') {
+
+            $data['labour'] = $this->CommonModal->getRowById('tbl_labour', 'division', decryptId($division));
+        } else {
+            $data['labour'] = $this->CommonModal->getAllRowsInOrder('tbl_labour', 'eid', 'ASC');
+        }
+
+        $this->load->view('admin/employee-billing', $data);
+    }
+
+    public function employee_attendance()
+    {
+        $data['title'] = "Employee Attendance";
+        $data['from'] = $this->input->get('from');
+        $data['to'] = $this->input->get('to');
+        $division = $this->input->get('division');
+        $data['div'] = decryptId($division);
+        if (decryptId($division) != '') {
+
+            $data['labour'] = $this->CommonModal->getRowById('tbl_labour', 'division', decryptId($division));
+        } else {
+            $data['labour'] = $this->CommonModal->getAllRowsInOrder('tbl_labour', 'eid', 'ASC');
+        }
+
+        $this->load->view('admin/employee_attendance', $data);
+    }
+
+
+
+    public function QC_report()
+    {
+        $data['title'] = "QC Update";
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $division = decryptId($this->input->get('division'));
+        $data['from'] = $from;
+        $data['to'] = $to;
+        $data['div'] = $division;
+
+        if ($division != '') {
+            $data['qc'] = $this->CommonModal->runQuery("SELECT * FROM `tbl_qc_update` WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `division_id` = '" . $division . "' ");
+        } else {
+            $data['qc'] = $this->CommonModal->getAllRows('tbl_qc_update');
+        }
+
+        $this->load->view('admin/QC_report', $data);
+    }
+
+
+
+    public function work_update_filter()
+    {
+        $data['title'] = "Work Update Filter";
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $division = decryptId($this->input->get('division'));
+        $data['from'] = $from;
+        $data['to'] = $to;
+        $data['div'] = $division;
+
+        if ($division != '') {
+
+            $data['work'] =   $this->CommonModal->runQuery("SELECT `tbl_work_update`.`labour` as labour , `tbl_qc_update`.`division` as division, SUM(`tbl_work_update`.`quantity`) AS qty,SUM(`tbl_qc_update`. `qc_accepted` ) as accepted,SUM(`tbl_qc_update`. `qc_rejected` ) as rejected FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id` WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `tbl_qc_update`.`division_id` = '" . $division . "'  group by `tbl_work_update`.`labour`");
+        } else {
+            $data['work'] =   $this->CommonModal->runQuery("SELECT `tbl_work_update`.`labour` as labour, `tbl_qc_update`.`division` as division, SUM(`tbl_work_update`.`quantity`) AS qty,SUM(`tbl_qc_update`. `qc_accepted` ) as accepted,SUM(`tbl_qc_update`. `qc_rejected` ) as rejected FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id`  group by `tbl_work_update`.`labour`");
+        }
+
+        $this->load->view('admin/work-update-filter', $data);
+    }
+
+
+    public function raw_material()
+    {
+        $data['title'] = "Raw Material";
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $division = decryptId($this->input->get('division'));
+        $data['from'] = $from;
+        $data['to'] = $to;
+        $data['div'] = $division;
+
+        if ($division != '') {
+
+            $data['work'] =   $this->CommonModal->runQuery("SELECT `tbl_qc_update`.`division` as division, SUM(`tbl_work_update`.`quantity`) AS qty , SUM(`tbl_qc_update`. `quantity` ) as qcqty FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id`  WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `tbl_qc_update`.`division_id` = '" . $division . "' group by `tbl_work_update`.`labour`;");
+        } else {
+            $data['work'] =   $this->CommonModal->runQuery("SELECT  `tbl_qc_update`.`division` as division, SUM(`tbl_work_update`.`quantity`) AS qty , SUM(`tbl_qc_update`. `quantity` ) as qcqty FROM `tbl_work_update` JOIN `tbl_qc_update` ON `tbl_work_update`.`labour` = `tbl_qc_update`.`labour_id` group by `tbl_work_update`.`labour`");
+        }
+
+        $this->load->view('admin/raw_material', $data);
+    }
+
+    public function labour_wise_productivity()
+    {
+        $data['title'] = "Labour Wise Productivity";
+        $data['labour'] = $this->CommonModal->getAllRowsInOrder('tbl_labour', 'division', sessionId('setdivision'));
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $labour = $this->input->get('labour_id');
+        $data['from'] = $from;
+        $data['to'] = $to;
+        $data['lab'] = $labour;
+
+        if ($labour != '') {
+
+            $data['qc'] = $this->CommonModal->runQuery("SELECT * FROM `tbl_qc_update` WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `labour_id` = '" . $labour . "' AND `division_id` =  '" . sessionId('setdivision') . "'");
+        } else {
+            $data['qc'] = $this->CommonModal->getRowById('tbl_qc_update', 'division_id', sessionId('setdivision'));
+        }
+
+        $this->load->view('admin/labour-wise-productivity', $data);
+    }
+
+
+    public function hr_employee_attendance()
+    {
+        $data['title'] = "Employee Attendance";
+        $data['from'] = $this->input->get('from');
+        $data['to'] = $this->input->get('to');
+
+
+        $data['labour'] = $this->CommonModal->getRowById('tbl_labour', 'division',  sessionId('setdivision'));
+
+        $this->load->view('admin/employee_attendance', $data);
+    }
+
+    public function open_list()
+    {
+        $data['title'] = "Quality Check";
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $data['from'] = $from;
+        $data['to'] = $to;
+
+        if ($from != '') {
+
+            $data['qc'] = $this->CommonModal->runQuery("SELECT `division` as division, SUM(`need_to_pack`) AS pending  FROM `tbl_qc_update` WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `division_id` = '" . sessionId('setdivision') . "' group by division ");
+        } else {
+            $data['qc'] = $this->CommonModal->runQuery("SELECT `division` as division, SUM(`need_to_pack`) AS pending  FROM `tbl_qc_update` WHERE  `division_id` = '" . sessionId('setdivision') . "'  group by division ");
+        }
+        $this->load->view('admin/open-list', $data);
+    }
+
+    public function quality_check()
+    {
+        $data['title'] = "Quality Check";
+        $from = $this->input->get('from');
+        $to = $this->input->get('to');
+        $data['from'] = $from;
+        $data['to'] = $to;
+        if ($from != '') {
+
+            $data['qc'] = $this->CommonModal->runQuery("SELECT * FROM `tbl_qc_update` WHERE  DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `division_id` = '" . sessionId('setdivision') . "' ");
+        } else {
+            $data['qc'] = $this->CommonModal->runQuery("SELECT * FROM `tbl_qc_update` WHERE  `division_id` = '" . sessionId('setdivision') . "' ");
+        }
+
+        $this->load->view('admin/QC_report', $data);
     }
 }

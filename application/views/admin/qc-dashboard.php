@@ -7,7 +7,7 @@
                     <div class="card-info">
                         <p class="mb-1 text-white fs-14">Weight</p>
                         <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600">0</h2>
+                            <h2 class="num-text text-white mb-5 font-w600"><?= $qcqty['qty'] ?></h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
                                 <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -17,21 +17,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
-                <div class="card-bx stacked card">
-                    <img src="<?= base_url('assets/admin/') ?>images/card/card2.jpg" alt="" />
-                    <div class="card-info">
-                        <p class="fs-14 mb-1 text-white">QC rate</p>
-                        <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600">0</h2>
-                            <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
-                                <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-sm-3">
                 <div class="card-bx stacked card">
                     <img src="<?= base_url('assets/admin/') ?>images/card/card1.jpg" alt="" />
@@ -39,7 +25,7 @@
                         <p class="mb-1 text-white fs-14">QC Target</p>
                         <div class="d-flex justify-content-between">
                             <h2 class="num-text text-white mb-5 font-w600">
-                                0
+                                <?= $target['target'] ?> %
                             </h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -55,7 +41,7 @@
                     <div class="card-info">
                         <p class="mb-1 text-white fs-14">Success Rate Today</p>
                         <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600">0</h2>
+                            <h2 class="num-text text-white mb-5 font-w600"><?= $qc[0]['accepted'] ?></h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
                                 <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -64,6 +50,23 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-3">
+                <div class="card-bx stacked card">
+                    <img src="<?= base_url('assets/admin/') ?>images/card/card2.jpg" alt="" />
+                    <div class="card-info">
+                        <p class="fs-14 mb-1 text-white">Reject rate</p>
+                        <div class="d-flex justify-content-between">
+                            <h2 class="num-text text-white mb-5 font-w600"><?= $qc[0]['rejected'] ?></h2>
+                            <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
+                                <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -75,12 +78,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 1</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -90,12 +93,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 2</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -105,12 +108,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 3</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -120,12 +123,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 4</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -166,7 +169,7 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Present</p>
-                                <h3 class="text-white">338</h3>
+                                <h3 class="text-white"><?= $attendance[0]['total_present'] ?></h3>
                                 <div class="progress mb-2 bg-primary">
                                     <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
                                 </div>
@@ -185,7 +188,7 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Absent</p>
-                                <h3 class="text-white">28</h3>
+                                <h3 class="text-white"><?= $attendance[0]['total_absent'] ?></h3>
                                 <div class="progress mb-2 bg-primary">
                                     <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
                                 </div>
@@ -196,7 +199,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display: none;">
             <div class="col-xl-4 col-lg-6 col-sm-6">
                 <div class="widget-stat card">
                     <div class="card-body p-4">
@@ -252,11 +255,11 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Total QC Acceptance</p>
-                                <h3 class="text-white">3280</h3>
+                                <h3 class="text-white"><?= $monthlyqc[0]['accepted'] ?></h3>
                                 <div class="progress mb-2 bg-secondary">
                                     <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
                                 </div>
-                                <small>80% Increase in 20 Days</small>
+                                <small> 30 Days</small>
                             </div>
                         </div>
                     </div>
@@ -271,21 +274,21 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Total QC Rejection</p>
-                                <h3 class="text-white">280</h3>
+                                <h3 class="text-white"><?= $monthlyqc[0]['rejected'] ?></h3>
                                 <div class="progress mb-2 bg-secondary">
                                     <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
                                 </div>
-                                <small>80% Increase in 20 Days</small>
+                                <small>30 Days</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
+        <!-- <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
             <h2 class="font-w600 title mb-2 me-auto ">Success Rate Divisions</h2>
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
             <div class="col-xl-3 col-sm-6 m-t35">
                 <div class="card card-coin">
                     <div class="card-body text-center">
@@ -342,7 +345,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-xl-6 col-xxl-12">
                 <div class="card">
@@ -362,12 +365,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-left">Poonam Thakur</td>
-                                        <td>Divi</td>
-                                        <td>3000</td>
-                                        <td class="text-end">500</td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    if (!empty($labour)) {
+                                        foreach ($labour as $row) {
+                                            $division = getRowById('tbl_division', 'did', $row['division']);
+                                            $all_data = $this->CommonModal->runQuery("SELECT SUM(qc_accepted) as accepted , SUM(qc_rejected) as reject FROM `tbl_qc_update` WHERE labour_id = '" . $row['eid'] . "' AND DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' ");
+
+                                    ?>
+                                            <tr>
+                                                <td class="text-left"><?= $row['name'] ?></td>
+                                                <td><?= $division[0]['name'] ?></td>
+                                                <td><?= $all_data[0]['accepted'] ?></td>
+                                                <td><?= $all_data[0]['reject'] ?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -382,16 +397,19 @@
 </div>
 <div class="col-xl-12 col-lg-12 col-sm-12">
     <div class="widget-stat card">
-        <div class="card-body p-4">
-            <h4 class="card-title">Open List</h4>
-            <p>QC pending for labour</p>
-            <div class="progress mb-2">
-                <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
+        <a href="<?= base_url('open-list') ?>">
+            <div class="card-body p-4">
+                <h4 class="card-title">Open List</h4>
+                <p>QC pending for labour</p>
+
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
-<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
+<!-- <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center"> 
     <h2 class="font-w600 title mb-2 me-auto ">Divisions</h2>
 </div>
 <div class="row">
@@ -401,12 +419,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 1</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -416,12 +434,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 2</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -431,12 +449,12 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 3</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -446,13 +464,13 @@
 
                 <h2 class="text-black mb-2 font-w600">Division 4</h2>
                 <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
+                    <span class="pull-right">75%</span>
+                </h6>
                 <div class="progress mb-2">
                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                 </div>
-               
+
             </div>
         </div>
     </div>
-</div>
+</div> -->

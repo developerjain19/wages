@@ -18,6 +18,13 @@ function convertDatedmy($dt)
 	return date("d M, y", strtotime($dt));
 }
 
+function calculatepercent($num1, $num2)
+{
+	return ($num1 / $num2) * 100;;
+}
+
+
+
 function setDateOnly()
 {
 	return date('Y-m-d');
@@ -393,7 +400,7 @@ function Image_exist($image_nm)
 		}
 	} else {
 		return '';
-	}	
+	}
 }
 
 function Imgexist($image_nm)
@@ -826,12 +833,8 @@ function mailmsg($to, $subject, $message)
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-	$headers .= 'From: '.PROJECT_EMAIL."\r\n";
-	$headers .= 'Cc: '. $to . "\r\n";
+	$headers .= 'From: ' . PROJECT_EMAIL . "\r\n";
+	$headers .= 'Cc: ' . $to . "\r\n";
 
 	$send = mail($to, $subject, $message, $headers);
 }
-
-
-
-

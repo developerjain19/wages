@@ -2,13 +2,10 @@
 
 <body>
     <div id="main-wrapper">
-
         <?php $this->load->view('template/header'); ?>
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-
-
                     <div class="col-12">
                         <div class="card">
                             <?php if ($this->session->userdata('msg') != '') { ?>
@@ -16,13 +13,7 @@
                             <?php  }
                             $this->session->unset_userdata('msg'); ?>
                             <div class="card-header">
-                                <h4 class="card-title">Labour List</h4>
-                                <?php if (sessionId('position') == '1' || sessionId('position') == '2') { ?>
-                                    <a href="<?= base_url('labour-registration') ?>" class="btn btn-success btn-sm">Add Labour <i class="fa fa-plus"></i></a>
-                                <?php
-                                }
-                                ?>
-
+                                <h4 class="card-title"><?= $title ?></h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -30,54 +21,47 @@
                                         <thead>
                                             <tr>
                                                 <th>SNo</th>
-                                                <th>Reg.Date</th>
-                                                <th>Name</th>
-                                                <th>Aadhaar</th>
-                                                <th>Division</th>
-                                                <th>Contact</th>
-                                                <th>Alternate Contact</th>
-                                                <th>Address</th>
-                                                <th>Resource Type</th>
-                                                <th>Bank</th>
-                                                <th>Account NO.</th>
-                                                <th>IFSC</th>
-                                                <th>UPI</th>
+                                                <th>Date</th>
+                                                <th>Labour</th>
+                                                <th>division</th>
+                                                <th>Quantity</th>
+                                                <th>Qc Accepted</th>
+                                                <th>Qc Rejected</th>
+                                                <th>Need to pack</th>
+                                                <th>Packed</th>
+                                                <th>WIP</th>
+                                                <th>AVG Division</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            if (!empty($labour)) {
-                                                foreach ($labour as $row) {
-                                                    $resource = getRowById('tbl_resource_type', 'rid', $row['resourcetype']);
-                                                    $division = getRowById('tbl_division', 'did', $row['division'])
+                                            if (!empty($qc)) {
+                                                foreach ($qc as $row) {
+                                                    $lab = getRowById('tbl_labour', 'eid', $row['labour_id'])[0];
                                             ?>
-                                                    <tr class="labour" data-id="<?= $row['eid'] ?>">
+                                                    <tr class="<?= ((sessionId('position') == '3') ? '' : 'qc_update'); ?>" data-id="<?= $row['id'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= convertDatedmy($row['create_date'])  ?></td>
-                                                        <td><img src="<?= setImage($row['image'], 'uploads/labour/') ?>" class="circelimg"> <?= $row['name'] ?></td>
-                                                        <td><?= $row['adhaar'] ?></td>
-                                                        <td><?= $division[0]['name'] ?>
+                                                        <td><?= $lab['name'] ?>
                                                         </td>
-                                                        <td><?= $row['number'] ?>
+                                                        <td><?= $row['division'] ?>
                                                         </td>
-                                                        <td><?= $row['alt_number'] ?>
+                                                        <td><?= $row['quantity'] ?>
                                                         </td>
-                                                        <td><?= $row['address'] ?>
+                                                        <td><?= $row['qc_accepted'] ?>
                                                         </td>
-                                                        <td><?= (($resource != '') ? $resource[0]['title'] : '')  ?>
+                                                        <td><?= $row['qc_rejected'] ?>
                                                         </td>
-                                                        <td><?= $row['bank'] ?>
+                                                        <td><?= $row['need_to_pack'] ?>
                                                         </td>
-                                                        <td><?= $row['ac_no'] ?>
+                                                        <td><?= $row['packed'] ?>
                                                         </td>
-                                                        <td><?= $row['ifsc'] ?>
+                                                        <td><?= $row['wip'] ?>
                                                         </td>
-                                                        <td><?= $row['upi'] ?>
+                                                        <td><?= $row['avg_division'] ?>
                                                         </td>
-
                                                     </tr>
-
                                             <?php
                                                     $i++;
                                                 }
@@ -86,7 +70,6 @@
                                             }
                                             ?>
                                     </table>
-
                                     </tbody>
                                     </table>
                                 </div>
@@ -98,13 +81,11 @@
             <?php $this->load->view('template/footer'); ?>
         </div>
         <?php $this->load->view('template/footer_link'); ?>
-
         <script>
             $(document).ready(function() {
-                $('.labour').on('click', function() {
-                    var labourId = $(this).data('id');
-
-                    window.location.href = "<?= base_url('labour-edit/') ?>" + labourId;
+                $('.qc_update').on('click', function() {
+                    var qc_updateId = $(this).data('id');
+                    window.location.href = "<?= base_url('qc-update-edit/') ?>" + qc_updateId;
                 });
             });
         </script>

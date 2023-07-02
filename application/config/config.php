@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $config['base_url'] = 'http://localhost/wages/';
 // $config['base_url'] = 'https://www.webangeltech.com/demo/wages/';
 
+
 $config['index_page'] = '';
 
 $config['uri_protocol']    = 'REQUEST_URI';
@@ -19,8 +20,6 @@ $config['enable_hooks'] = FALSE;
 
 
 $config['subclass_prefix'] = 'MY_';
-
-
 $config['composer_autoload'] = FALSE;
 
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-?=';
@@ -103,7 +102,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/userguide3/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'Rashu123456789sdfghjklcvbnm';
+$config['encryption_key'] = 'Rashu123';
 
 
 $config['sess_driver'] = 'files';

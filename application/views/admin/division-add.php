@@ -15,9 +15,11 @@
                                 </h4>
 
                                 <?php if ($tag == 'edit') {
+                                    if ($this->delete == '1') {
                                 ?>
-                                    <a href="<?php echo base_url() . 'division-list?BdID=' . encryptId($division[0]['did']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
-                                <?php } else { ?>
+                                        <a href="<?php echo base_url() . 'division-list?BdID=' . encryptId($division[0]['did']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
+                                    <?php }
+                                } else { ?>
                                     <a href="<?= base_url('division-list') ?>" class="btn btn-success btn-sm">Division List <i class="fa fa-list"></i></a>
                                 <?php
                                 }
@@ -40,9 +42,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-5"></div>
-                                            <div class="col-sm-5">
-                                                <input type="submit" value="Submit" class="btn btn-info">
-                                            </div>
+                                            <?php if ($this->edit == '1') { ?>
+                                                <div class="col-sm-5">
+                                                    <input type="submit" value="Submit" class="btn btn-info">
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </form>
                                 </div>
