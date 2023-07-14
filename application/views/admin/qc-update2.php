@@ -35,9 +35,9 @@
                                         </div>
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
-                                                <label class="text-label text-white">Division*</label>
-                                                <input type="text" class="form-control" name="division" placeholder="division" value="<?= $division['name'] ?>" readonly>
-                                                <input type="hidden" class="form-control" name="division_id" value="<?= $division['did'] ?>">
+                                                <label class="text-label text-white">company*</label>
+                                                <input type="text" class="form-control" name="company" placeholder="company" value="<?= $company['name'] ?>" readonly>
+                                                <input type="hidden" class="form-control" name="company_id" value="<?= $company['did'] ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 mb-2">
@@ -79,8 +79,8 @@
 
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
-                                                <label class="text-label text-white">AVG Division( based on current platform)*</label>
-                                                <input type="text" class="form-control" name="avg_division" placeholder="AVG Division" value="">
+                                                <label class="text-label text-white">AVG company( based on current platform)*</label>
+                                                <input type="text" class="form-control" name="avg_company" placeholder="AVG company" value="">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-2">

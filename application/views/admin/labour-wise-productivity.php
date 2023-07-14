@@ -64,13 +64,13 @@
                                                 <th>SNo</th>
                                                 <th>Date</th>
                                                 <th>Name</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                                 <th>Weight </th>
                                                 <th>Accepted </th>
                                                 <th>Rejected</th>
                                                 <th>Accepted% </th>
                                                 <th>Rejection% </th>
-                                                <th>Need to Pack</th>
+                                                <!-- <th>Need to Pack</th> -->
 
                                             </tr>
                                         </thead>
@@ -79,26 +79,27 @@
                                             $i = 1;
                                             if (!empty($qc)) {
                                                 foreach ($qc as $row) {
-                                                    $divIn = getRowById('tbl_labour', 'eid', $row['labour_id'])[0];
-                                                 ?>
+                                                    $divIn = getRowById('tbl_labour', 'eid', $row['labour'])[0];
+                                                    $company = getRowById('tbl_company', 'did', $row['company'])[0];
+                                            ?>
                                                     <tr>
                                                         <td><?= $i ?></td>
                                                         <th><?= convertDatedmy($row['create_date']) ?></th>
                                                         <td><?= $divIn['name'] ?></td>
-                                                        <td><?= $row['division'] ?></td>
+                                                        <td><?= $company['name'] ?></td>
                                                         <td><?= $row['quantity'] ?></td>
-                                                        <td><?= $row['qc_accepted'] ?></td>
-                                                        <td><?= $row['qc_rejected'] ?></td>
-                                                        <td><?= $row['success'] ?></td>
-                                                        <td><?= $row['rejection'] ?></td>
-                                                        <td><?= $row['need_to_pack'] ?></td>
+                                                        <td><?= $row['fqc_accepted'] ?></td>
+                                                        <td><?= $row['fqc_rejected'] ?></td>
+                                                        <td><?= $row['success_per'] ?></td>
+                                                        <td><?= $row['rejection_per'] ?></td>
+                                                        <!-- <td><?= $row['need_to_pack'] ?></td> -->
                                                     </tr>
 
                                             <?php
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
                                     </table>

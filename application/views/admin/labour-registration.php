@@ -44,18 +44,18 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label class="col-sm-2 col-form-label text-white">Division:</label>
+                                            <label class="col-sm-2 col-form-label text-white">company:</label>
                                             <div class="col-sm-10">
 
 
-                                                <select name="division" class="form-control" required>
-                                                    <option value="">Select Division</option>
+                                                <select name="company" class="form-control" required>
+                                                    <option value="">Select company</option>
                                                     <?php
-                                                    $division =  getAllRow('tbl_division');
-                                                    if ($division != '') {
-                                                        foreach ($division as $divi) {  ?>
+                                                    $company =  getAllRow('tbl_company');
+                                                    if ($company != '') {
+                                                        foreach ($company as $divi) {  ?>
 
-                                                            <option value="<?= $divi['did'] ?>" <?= (($tag == 'edit') ? (($labour[0]['division'] == $divi['did']) ? 'selected' : '') : '')  ?>>
+                                                            <option value="<?= $divi['did'] ?>" <?= (($tag == 'edit') ? (($labour[0]['company'] == $divi['did']) ? 'selected' : '') : '')  ?>>
                                                                 <?= $divi['name'] ?>
                                                             </option>
                                                     <?php

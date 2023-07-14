@@ -11,16 +11,16 @@
                             <div class="card-header">
                                 <h4 class="card-title"><?php if ($tag == 'edit') { ?>
                                         <a href="#" onclick="history.back()"><i class="fa fa-times"></i></a>
-                                        <?php } ?><?= ucfirst($tag) ?> Division
+                                        <?php } ?><?= ucfirst($tag) ?> company
                                 </h4>
 
                                 <?php if ($tag == 'edit') {
                                     if ($this->delete == '1') {
                                 ?>
-                                        <a href="<?php echo base_url() . 'division-list?BdID=' . encryptId($division[0]['did']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
+                                        <a href="<?php echo base_url() . 'company-list?BdID=' . encryptId($company[0]['did']) ?>" class="btn btn-danger shadow btn-xs sharp is_permission" onclick="return confirm('Are you sure to delete this data?')"><i class="fa fa-trash"></i></a>
                                     <?php }
                                 } else { ?>
-                                    <a href="<?= base_url('division-list') ?>" class="btn btn-success btn-sm">Division List <i class="fa fa-list"></i></a>
+                                    <a href="<?= base_url('company-list') ?>" class="btn btn-success btn-sm">company List <i class="fa fa-list"></i></a>
                                 <?php
                                 }
                                 ?>
@@ -29,15 +29,15 @@
                                 <div class="basic-form">
                                     <form method="post">
                                         <div class="mb-3 row">
-                                            <label class="col-sm-2 col-form-label text-white">Division Name :</label>
+                                            <label class="col-sm-2 col-form-label text-white">company Name :</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="name" name="name" value="<?= (($tag == 'edit') ? $division[0]['name'] : '')  ?>" required>
+                                                <input type="text" class="form-control" id="name" name="name" value="<?= (($tag == 'edit') ? $company[0]['name'] : '')  ?>" required>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-sm-2 col-form-label text-white">Location :</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="location" value="<?= (($tag == 'edit') ? $division[0]['location'] : '')  ?>" name="location">
+                                                <input type="text" class="form-control" id="location" value="<?= (($tag == 'edit') ? $company[0]['location'] : '')  ?>" name="location">
                                             </div>
                                         </div>
                                         <div class="row">

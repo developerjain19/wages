@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-xl-6 col-xxl-12">
-        <div class="row">
+        <div class="row py-4">
             <div class="col-sm-3">
                 <div class="card-bx stacked card">
                     <img src="<?= base_url('assets/admin/') ?>images/card/card3.jpg" alt="" />
                     <div class="card-info">
                         <p class="mb-1 text-white fs-14">Weight</p>
                         <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600"><?= $qcqty['qty'] ?></h2>
+                            <h2 class="num-text text-white mb-5 font-w600"><?= ((empty($qcmonth['qty']))? '0' : $qcmonth['qty']) ?></h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
                                 <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -16,8 +16,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-sm-3">
                 <div class="card-bx stacked card">
                     <img src="<?= base_url('assets/admin/') ?>images/card/card1.jpg" alt="" />
@@ -25,7 +23,7 @@
                         <p class="mb-1 text-white fs-14">QC Target</p>
                         <div class="d-flex justify-content-between">
                             <h2 class="num-text text-white mb-5 font-w600">
-                                <?= $target['target'] ?> %
+                                <?= ((empty($qcmonth['target']))? '0' : $qcmonth['target']) ?>
                             </h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -39,9 +37,18 @@
                 <div class="card-bx stacked card">
                     <img src="<?= base_url('assets/admin/') ?>images/card/card4.jpg" alt="" />
                     <div class="card-info">
-                        <p class="mb-1 text-white fs-14">Success Rate Today</p>
+                        <p class="mb-1 text-white fs-14">Success Rate Monthly</p>
                         <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600"><?= $qc[0]['accepted'] ?></h2>
+                            <h2 class="num-text text-white mb-5 font-w600">
+                                <?php
+                                if ($qcqtymothly['qty'] != 0) {
+                                    $suc = ($qcmonth['accepted'] / $qcmonth['qty']) * 100;
+                                    echo number_format($suc);
+                                } else {
+                                    echo "0";
+                                }
+
+                                ?>%</h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
                                 <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -50,14 +57,24 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-3">
                 <div class="card-bx stacked card">
                     <img src="<?= base_url('assets/admin/') ?>images/card/card2.jpg" alt="" />
                     <div class="card-info">
                         <p class="fs-14 mb-1 text-white">Reject rate</p>
                         <div class="d-flex justify-content-between">
-                            <h2 class="num-text text-white mb-5 font-w600"><?= $qc[0]['rejected'] ?></h2>
+                            <h2 class="num-text text-white mb-5 font-w600">
+                                <?php
+                                
+                                
+                                if ($qcqtymothly['qty'] != 0) {
+                                    $rej = ($qcmonth['rejected'] / $qcmonth['qty']) * 100;
+                                    echo number_format($rej);
+                                } else {
+                                    echo "0";
+                                }
+
+                                ?>%</h2>
                             <svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
                                 <circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67" />
@@ -66,75 +83,11 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
-<h2 class="text-black me-auto font-w600 mb-3">Daily QC Progress</h2>
-<div class="row">
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 1</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 2</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 3</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 4</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
 <div class=" form-head d-flex flex-wrap mb-4 align-items-center">
-    <div class="card-action coin-tabs mt-3 mt-sm-0">
+    <div class="card-action coin-tabs mt-3">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link fs-22 active" data-bs-toggle="tab" href="#Bitcoin" role="tab" aria-selected="true">
@@ -156,98 +109,109 @@
 </div>
 <div class="tab-content">
     <div class="tab-pane fade show active" id="Bitcoin">
-        <div class="row">
-            <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-                <h2 class="font-w600 title mb-2 me-auto ">Labour Today Division Name</h2>
-            </div>
-            <div class="col-xl-6 col-xxl-6 col-lg-6 col-sm-12">
-                <div class="widget-stat card bg-secondary">
-                    <div class="card-body p-4">
-                        <div class="media">
-                            <span class="me-3">
-                                <i class="flaticon-381-user-7"></i>
-                            </span>
-                            <div class="media-body text-white">
-                                <p class="mb-1">Present</p>
-                                <h3 class="text-white"><?= $attendance[0]['total_present'] ?></h3>
-                                <div class="progress mb-2 bg-primary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
+        <div class="row justify-content-center py-4">
+            <!-- <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+                <div class="cards-box">
+                    <div class="card">
+                        <div class="content-placeholder">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="noti-content">
+                                        <div class="text-content">
+                                            <h4 class="">Open List</h4>
+                                            <p>Here you can see your daily task progress</p>
+                                        </div>
+                                        <div class="img-text"></div>
+                                    </div>
                                 </div>
-                                <!-- <small>76% Increase in 20 Days</small> -->
+                                <div class="col-sm-1">
+                                    <div class="img"> <i class="flaticon-381-user-7 text-white"></i></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-6 col-xxl-6 col-lg-6 col-sm-12">
-                <div class="widget-stat card bg-secondary">
-                    <div class="card-body p-4">
-                        <div class="media">
-                            <span class="me-3">
-                                <i class="flaticon-381-user-7"></i>
-                            </span>
-                            <div class="media-body text-white">
-                                <p class="mb-1">Absent</p>
-                                <h3 class="text-white"><?= $attendance[0]['total_absent'] ?></h3>
-                                <div class="progress mb-2 bg-primary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
+            </div> -->
+
+            <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+
+                <div class="row">
+                    <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
+                        <h2 class="font-w600 title mb-2 me-auto ">Monthly Details</h2>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                        <div class="widget-stat card ">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="me-3">
+                                        <i class="flaticon-381-settings-4"></i>
+                                    </span>
+                                    <div class="media-body text-white text-right">
+                                        <p class="mb-1">Pending QC </p>
+                                        <h4 class="" style="color: #ffca2c !important;"><?= ((empty($qcmonth[0]['pending']))? '0' : $qcmonth[0]['pending']) ?></h4>
+                                    </div>
                                 </div>
-                                <!-- <small>76% Increase in 20 Days</small> -->
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="display: none;">
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly1</h4>
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                        <div class="widget-stat card ">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="me-3">
+                                        <i class="flaticon-381-settings-4"></i>
+                                    </span>
+                                    <div class="media-body text-white text-right">
+                                        <p class="mb-1">Packed Bags</p>
+                                        <h4 class="" style="color: #2375E0 !important;"><?= ((empty($qcmonth[0]['packed']))? '0' : $qcmonth[0]['packed']) ?></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly2</h4>
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                        <div class="widget-stat card ">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="me-3">
+                                        <i class="flaticon-381-settings-4"></i>
+                                    </span>
+                                    <div class="media-body text-white text-right">
+                                        <p class="mb-1">Total Accepted Weight</p>
+                                        <h4 class="" style="color: #14c874 !important;"><?= ((empty($qcmonth[0]['accepted']))? '0' : $qcmonth[0]['accepted']) ?></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly3</h4>
+
+
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                        <div class="widget-stat card ">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="me-3">
+                                        <i class="flaticon-381-settings-4"></i>
+                                    </span>
+                                    <div class="media-body text-white text-right">
+                                        <p class="mb-1">Total Rejected Weight</p>
+                                        <h4 class="" style="color: #ff1028ba !important;"><?= ((empty($qcmonth[0]['rejected']))? '0' : $qcmonth[0]['rejected']) ?></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly4</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly5</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Poly6</h4>
-                    </div>
+
+
+
                 </div>
             </div>
         </div>
     </div>
     <div class="tab-pane fade" id="Ethereum">
         <div class="row">
-            <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card bg-primary">
+            <div class="col-xl-6 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="widget-stat card ">
                     <div class="card-body  p-4">
                         <div class="media">
                             <span class="me-3">
@@ -255,9 +219,9 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Total QC Acceptance</p>
-                                <h3 class="text-white"><?= $monthlyqc[0]['accepted'] ?></h3>
-                                <div class="progress mb-2 bg-secondary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
+                                <h3 class="text-white"><?= $qcmonth['accepted'] ?></h3>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar progress-animated bg-success" style="width: <?= number_format($suc) ?>%"></div>
                                 </div>
                                 <small> 30 Days</small>
                             </div>
@@ -265,8 +229,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
-                <div class="widget-stat card bg-primary">
+            <div class="col-xl-6 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="widget-stat card ">
                     <div class="card-body  p-4">
                         <div class="media">
                             <span class="me-3">
@@ -274,9 +238,9 @@
                             </span>
                             <div class="media-body text-white">
                                 <p class="mb-1">Total QC Rejection</p>
-                                <h3 class="text-white"><?= $monthlyqc[0]['rejected'] ?></h3>
-                                <div class="progress mb-2 bg-secondary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
+                                <h3 class="text-white"><?= $qcmonth['rejected'] ?></h3>
+                                <div class="progress mb-2 ">
+                                    <div class="progress-bar progress-animated bg-danger" style="width: <?= number_format($rej) ?>%"></div>
                                 </div>
                                 <small>30 Days</small>
                             </div>
@@ -285,68 +249,76 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-            <h2 class="font-w600 title mb-2 me-auto ">Success Rate Divisions</h2>
-        </div> -->
+        <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
+            <h2 class="font-w600 title mb-2 me-auto ">Daily Details</h2>
+        </div>
+        <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+            <div class="row">
+                <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                    <div class="widget-stat card ">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="flaticon-381-settings-4"></i>
+                                </span>
+                                <div class="media-body text-white text-right">
+                                    <p class="mb-1">Pending QC</p>
+                                    <h4 class="" style="color: #ffca2c !important;"><?= ((empty($qc[0]['need_to_pack']))? '0' : $qc[0]['need_to_pack']) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                    <div class="widget-stat card ">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="flaticon-381-settings-4"></i>
+                                </span>
+                                <div class="media-body text-white text-right">
+                                    <p class="mb-1">Accepted</p>
+                                    <h4 class="" style="color: #14c874 !important;"><?= ((empty($qc[0]['qc_accepted']))? '0' : $qc[0]['qc_accepted']) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                    <div class="widget-stat card ">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="flaticon-381-settings-4"></i>
+                                </span>
+                                <div class="media-body text-white text-right">
+                                    <p class="mb-1">Rejected</p>
+                                    <h4 class=""  style="color: #ff1028ba !important;"><?= ((empty($qc[0]['qc_rejected']))? '0' : $qc[0]['qc_rejected']) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
+                    <div class="widget-stat card ">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <i class="flaticon-381-settings-4"></i>
+                                </span>
+                                <div class="media-body text-white text-right">
+                                    <p class="mb-1">Total Weight</p>
+                                    <h4 class="text-white"> <?= ((empty($qc[0]['qty']))? '0' : $qc[0]['qty']) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- <div class="row">
-            <div class="col-xl-3 col-sm-6 m-t35">
-                <div class="card card-coin">
-                    <div class="card-body text-center">
-
-                        <h2 class="text-black mb-2 font-w600">Division 1</h2>
-                        <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
-                        <div class="progress ">
-                            <div class="progress-bar bg-info progress-animated" style="width: 75%; height:6px;" role="progressbar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 m-t35">
-                <div class="card card-coin">
-                    <div class="card-body text-center">
-
-                        <h2 class="text-black mb-2 font-w600">Division 2</h2>
-                        <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
-                        <div class="progress ">
-                            <div class="progress-bar bg-info progress-animated" style="width: 75%; height:6px;" role="progressbar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 m-t35">
-                <div class="card card-coin">
-                    <div class="card-body text-center">
-
-                        <h2 class="text-black mb-2 font-w600">Division 3</h2>
-                        <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
-                        <div class="progress ">
-                            <div class="progress-bar bg-info progress-animated" style="width: 75%; height:6px;" role="progressbar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 m-t35">
-                <div class="card card-coin">
-                    <div class="card-body text-center">
-
-                        <h2 class="text-black mb-2 font-w600">Division 4</h2>
-                        <h6 class="my-progress-bar">Success Rate
-                            <span class="pull-right">75%</span>
-                        </h6>
-                        <div class="progress ">
-                            <div class="progress-bar bg-info progress-animated" style="width: 75%; height:6px;" role="progressbar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <div class="row">
             <div class="col-xl-6 col-xxl-12">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
@@ -359,7 +331,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left">Name</th>
-                                        <th class="text-center">Division</th>
+                                        <th class="text-center">Labour</th>
                                         <th class="text-center">Acceptance</th>
                                         <th class="text-end">Rejection</th>
                                     </tr>
@@ -369,13 +341,12 @@
                                     $i = 1;
                                     if (!empty($labour)) {
                                         foreach ($labour as $row) {
-                                            $division = getRowById('tbl_division', 'did', $row['division']);
+                                            $company = getRowById('tbl_company', 'did', $row['company']);
                                             $all_data = $this->CommonModal->runQuery("SELECT SUM(qc_accepted) as accepted , SUM(qc_rejected) as reject FROM `tbl_qc_update` WHERE labour_id = '" . $row['eid'] . "' AND DATE_FORMAT(create_date, '%Y-%m-%d') =  '" . $date . "' ");
-
                                     ?>
                                             <tr>
                                                 <td class="text-left"><?= $row['name'] ?></td>
-                                                <td><?= $division[0]['name'] ?></td>
+                                                <td><?= $company[0]['name'] ?></td>
                                                 <td><?= $all_data[0]['accepted'] ?></td>
                                                 <td><?= $all_data[0]['reject'] ?></td>
                                             </tr>
@@ -392,7 +363,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="col-xl-12 col-lg-12 col-sm-12">
@@ -401,76 +372,19 @@
             <div class="card-body p-4">
                 <h4 class="card-title">Open List</h4>
                 <p>QC pending for labour</p>
-
                 <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
+                    <?php
+                    if ($qcqtymothly['qty'] != 0) {
+                        $pending = ($qcmonth['pending'] / $qcqtymothly['qty']) * 100;
+                        number_format($pending);
+                    } else {
+                        echo "0";
+                    }
+
+                    ?>
+                    <div class="progress-bar progress-animated bg-warning" style="width: <?= $pending ?>%"></div>
                 </div>
             </div>
         </a>
     </div>
 </div>
-<!-- <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center"> 
-    <h2 class="font-w600 title mb-2 me-auto ">Divisions</h2>
-</div>
-<div class="row">
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 1</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 2</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 3</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-
-                <h2 class="text-black mb-2 font-w600">Division 4</h2>
-                <h6 class="my-progress-bar">Success Rate
-                    <span class="pull-right">75%</span>
-                </h6>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->

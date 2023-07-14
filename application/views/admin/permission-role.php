@@ -41,22 +41,22 @@
                                                             <th><?= $row['role_name'] ?></th>
                                                             <td>
                                                                 <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                                                    <input value="1" name="work_update[]" type="checkbox" class="form-check-input float-none" id="work_update<?= $row['role'] ?>" <?= (($row['work_update'] == '1') ? 'checked' : '') ?>>
+                                                                    <input value="1" name="work_update<?= $row['role'] ?>" type="checkbox" class="form-check-input float-none" id="work_update<?= $row['role'] ?>" <?= (($row['work_update'] == '1') ? 'checked' : '') ?>>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                                                    <input value="1" name="qc[]" type="checkbox" class="form-check-input float-none" id="qc<?= $row['role'] ?>" <?= (($row['qc'] == '1') ? 'checked' : '') ?>>
+                                                                    <input value="1" name="qc<?= $row['role'] ?>" type="checkbox" class="form-check-input float-none" id="qc<?= $row['role'] ?>" <?= (($row['qc'] == '1') ? 'checked' : '') ?>>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                                                    <input value="1" name="edit[]" type="checkbox" class="form-check-input float-none" id="edit<?= $row['role'] ?>" <?= (($row['edit'] == '1') ? 'checked' : '') ?>>
+                                                                    <input value="1" name="edit<?= $row['role'] ?>" type="checkbox" class="form-check-input float-none" id="edit<?= $row['role'] ?>" <?= (($row['edit'] == '1') ? 'checked' : '') ?>>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                                                    <input value="1" name="delete[]" type="checkbox" class="form-check-input float-none" id="delete<?= $row['role'] ?>" <?= (($row['delete'] == '1') ? 'checked' : '') ?>>
+                                                                    <input value="1" name="delete<?= $row['role'] ?>" type="checkbox" class="form-check-input float-none" id="delete<?= $row['role'] ?>" <?= (($row['delete'] == '1') ? 'checked' : '') ?>>
                                                                 </div>
                                                             </td>
 
@@ -66,7 +66,7 @@
                                                         $i++;
                                                     }
                                                 } else {
-                                                    echo  'No data';
+                                                    
                                                 }
                                                 ?>
 

@@ -40,9 +40,9 @@ class Login extends CI_Controller
                     $this->session->set_userdata(array('id' => $id, 'email' => $email, 'name' => $data[0]['name'], 'position' => $data[0]['position'], 'switch' => $data[0]['swich_permission']));
 
                     if ($data[0]['position'] == '3') {
-                        redirect('select-division');
+                        redirect('select-company');
                     } elseif ($data[0]['position'] == '5') {
-                        redirect('select-division');
+                        redirect('select-company');
                     } else {
                         redirect('dashboard');
                     }

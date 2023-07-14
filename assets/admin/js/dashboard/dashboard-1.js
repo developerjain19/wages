@@ -114,29 +114,29 @@
 			loop:true,
 			autoplay:true,
 			margin:20,
-			nav:false,
-			rtl:true,
+			nav:true,
+			ltl:true,
 			dots: false,
-			navText: ['', ''],
+			navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
 			responsive:{
 				0:{
-					items:3
+					items:2
 				},
 				450:{
-					items:4
+					items:3
 				},
 				600:{
-					items:5
+					items:3
 				},	
 				991:{
 					items:5
 				},			
 				
 				1200:{
-					items:7
+					items:5
 				},
 				1601:{
-					items:5
+					items:6
 				}
 			}
 		})

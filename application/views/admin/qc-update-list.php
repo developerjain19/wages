@@ -22,15 +22,15 @@
                                             <tr>
                                                 <th>SNo</th>
                                                 <th>Date</th>
-                                                <th>Labour</th>
-                                                <th>division</th>
+                                                
+                                                <th>company</th>
                                                 <th>Quantity</th>
                                                 <th>Qc Accepted</th>
                                                 <th>Qc Rejected</th>
                                                 <th>Need to pack</th>
                                                 <th>Packed</th>
-                                                <th>WIP</th>
-                                                <th>AVG Division</th>
+                                                <!-- <th>WIP</th>
+                                                <th>AVG company</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,9 +43,9 @@
                                                     <tr class="<?= ((sessionId('position') == '3') ? '' : 'qc_update'); ?>" data-id="<?= $row['id'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= convertDatedmy($row['create_date'])  ?></td>
-                                                        <td><?= $lab['name'] ?>
-                                                        </td>
-                                                        <td><?= $row['division'] ?>
+                                                        <!-- <td><?= $lab['name'] ?>
+                                                        </td> -->
+                                                        <td><?= $row['company'] ?>
                                                         </td>
                                                         <td><?= $row['quantity'] ?>
                                                         </td>
@@ -57,16 +57,16 @@
                                                         </td>
                                                         <td><?= $row['packed'] ?>
                                                         </td>
-                                                        <td><?= $row['wip'] ?>
+                                                        <!-- <td><?= $row['wip'] ?>
                                                         </td>
-                                                        <td><?= $row['avg_division'] ?>
-                                                        </td>
+                                                        <td><?= $row['avg_company'] ?>
+                                                        </td> -->
                                                     </tr>
                                             <?php
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
                                     </table>

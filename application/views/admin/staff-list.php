@@ -27,7 +27,7 @@
                                                 <th>Mobile No.</th>
                                                 <th>Email</th>
                                                 <th>Category</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -38,10 +38,10 @@
                                                 foreach ($staff as $row) {
                                                     $diva = [];
 
-                                                    $division =  getAllRow('tbl_division');
-                                                    if ($division != '') {
-                                                        foreach ($division as $divi) {
-                                                            $optionss = json_decode($row['division'], true);
+                                                    $company =  getAllRow('tbl_company');
+                                                    if ($company != '') {
+                                                        foreach ($company as $divi) {
+                                                            $optionss = json_decode($row['company'], true);
                                                             if (!empty($optionss)) {
                                                                 if (in_array($divi['did'], $optionss)) {
                                                                     $diva[] = $divi['name'];
@@ -58,14 +58,14 @@
                                                         <td><?= $row['name'] ?></td>
                                                         <td><?= $row['number'] ?></td>
                                                         <td><?= $row['email'] ?> </td>
-                                                        <td><?= (($row['position'] == '1')  ? 'Admin' : (($row['position'] == '2')  ? 'Manager' : (($row['position'] == '3')  ? 'HR' : (($row['position'] == '4')  ? 'Accounts' : (($row['position'] == '5')  ? 'QC' : ''))))) ?></td>
-                                                        <td> <?= $di2 ?> </td>
+                                                        <td><?= (($row['position'] == '1')  ? 'Admin' : (($row['position'] == '2')  ? 'Manager' : (($row['position'] == '3')  ? 'Team Leader' : (($row['position'] == '4')  ? 'Accounts' : (($row['position'] == '5')  ? 'QC' : ''))))) ?></td>
+                                                        <td>
+                                                             <?= (($row['position'] == '1' || $row['position'] == '2')  ? 'All' : $di2)   ?> </td>
                                                     </tr>
                                             <?php
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
                                             }
                                             ?>
                                     </table>

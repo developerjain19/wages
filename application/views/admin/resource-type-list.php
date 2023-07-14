@@ -48,7 +48,7 @@
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
 

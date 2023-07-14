@@ -2,8 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-$config['base_url'] = 'http://localhost/wages/';
+// $config['base_url'] = 'http://localhost/wages/';
 // $config['base_url'] = 'https://www.webangeltech.com/demo/wages/';
+$config['base_url'] = 'http://skillmil.co.in/management/';
 
 
 $config['index_page'] = '';
@@ -40,68 +41,16 @@ $config['log_file_extension'] = '';
 
 $config['log_file_permissions'] = 0644;
 
-/*
-|--------------------------------------------------------------------------
-| Date Format for Logs
-|--------------------------------------------------------------------------
-|
-| Each item that is logged has an associated date. You can use PHP date
-| codes to set your own date formatting
-|
-*/
 $config['log_date_format'] = 'Y-m-d H:i:s';
 
-/*
-|--------------------------------------------------------------------------
-| Error Views Directory Path
-|--------------------------------------------------------------------------
-|
-| Leave this BLANK unless you would like to set something other than the default
-| application/views/errors/ directory.  Use a full server path with trailing slash.
-|
-*/
 $config['error_views_path'] = '';
 
-/*
-|--------------------------------------------------------------------------
-| Cache Directory Path
-|--------------------------------------------------------------------------
-|
-| Leave this BLANK unless you would like to set something other than the default
-| application/cache/ directory.  Use a full server path with trailing slash.
-|
-*/
+
 $config['cache_path'] = '';
 
-/*
-|--------------------------------------------------------------------------
-| Cache Include Query String
-|--------------------------------------------------------------------------
-|
-| Whether to take the URL query string into consideration when generating
-| output cache files. Valid options are:
-|
-|	FALSE      = Disabled
-|	TRUE       = Enabled, take all query parameters into account.
-|	             Please be aware that this may result in numerous cache
-|	             files generated for the same page over and over again.
-|	array('q') = Enabled, but only take into account the specified list
-|	             of query parameters.
-|
-*/
+
 $config['cache_query_string'] = FALSE;
 
-/*
-|--------------------------------------------------------------------------
-| Encryption Key
-|--------------------------------------------------------------------------
-|
-| If you use the Encryption class, you must set an encryption key.
-| See the user guide for more info.
-|
-| https://codeigniter.com/userguide3/libraries/encryption.html
-|
-*/
 $config['encryption_key'] = 'Rashu123';
 
 
@@ -149,26 +98,6 @@ $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array();
 
-/*
-|--------------------------------------------------------------------------
-| Output Compression
-|--------------------------------------------------------------------------
-|
-| Enables Gzip output compression for faster page loads.  When enabled,
-| the output class will test whether your server supports Gzip.
-| Even if it does, however, not all browsers support compression
-| so enable only if you are reasonably sure your visitors can handle it.
-|
-| Only used if zlib.output_compression is turned off in your php.ini.
-| Please do not use it together with httpd-level output compression.
-|
-| VERY IMPORTANT:  If you are getting a blank page when compression is enabled it
-| means you are prematurely outputting something to your browser. It could
-| even be a line of whitespace at the end of one of your scripts.  For
-| compression to work, nothing can be sent before the output buffer is called
-| by the output class.  Do not 'echo' any values with compression enabled.
-|
-*/
 $config['compress_output'] = FALSE;
 
 /*
@@ -198,20 +127,5 @@ $config['time_reference'] = 'local';
 */
 $config['rewrite_short_tags'] = FALSE;
 
-/*
-|--------------------------------------------------------------------------
-| Reverse Proxy IPs
-|--------------------------------------------------------------------------
-|
-| If your server is behind a reverse proxy, you must whitelist the proxy
-| IP addresses from which CodeIgniter should trust headers such as
-| HTTP_X_FORWARDED_FOR and HTTP_CLIENT_IP in order to properly identify
-| the visitor's IP address.
-|
-| You can use both an array or a comma-separated list of proxy addresses,
-| as well as specifying whole subnets. Here are a few examples:
-|
-| Comma-separated:	'10.0.1.200,192.168.5.0/24'
-| Array:		array('10.0.1.200', '192.168.5.0/24')
-*/
+
 $config['proxy_ips'] = '';

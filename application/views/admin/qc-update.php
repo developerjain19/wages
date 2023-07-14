@@ -32,6 +32,13 @@
                                     <div class="row">
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
+                                                <label class="text-label text-white" for="date">Date :</label>
+                                                <input type="date" class="form-control" id="date" name="date" value="<?= (($tag == 'edit') ? $qc['date'] : date("Y-m-d"))  ?>" placeholder="Enter date" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-lg-4 mb-2">
+                                            <div class="form-group">
                                                 <label class="text-label text-white">Name *</label>
                                                 <select name="labour_id" class="form-control" required>
                                                     <option value="">Select Labour </option>
@@ -46,18 +53,18 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
-                                                <label class="text-label text-white">Division*</label>
-                                                <input type="text" class="form-control" name="division" placeholder="division" value="<?= $division['name'] ?>" readonly>
-                                                <input type="hidden" class="form-control" name="division_id" value="<?= $division['did'] ?>">
+                                                <label class="text-label text-white">company*</label>
+                                                <input type="text" class="form-control" name="company" placeholder="company" value="<?= $company['name'] ?>" readonly>
+                                                <input type="hidden" class="form-control" name="company_id" value="<?= $company['did'] ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
                                                 <label class="text-label text-white">Quantity*</label>
-                                                <input type="number" class="form-control" placeholder="Quantity" name="quantity" value="<?= (($tag == 'edit') ? $qc['quantity'] : '')  ?>" required>
+                                                <input type="number" class="form-control" placeholder="Quantity" name="quantity" <?= (($tag == 'edit') ? "value=".$qc['quantity'] : 'id="quantity"')  ?>  required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 mb-2">
@@ -84,7 +91,7 @@
                                                 <input type="text" class="form-control" name="packed" value="<?= (($tag == 'edit') ? $qc['packed'] : '')  ?>" id="packed" placeholder="Packed" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 mb-2">
+                                        <!-- <div class="col-lg-4 mb-2">
                                             <div class="form-group">
                                                 <label class="text-label text-white">WIP (based on current platform)*</label>
                                                 <input type="text" class="form-control" name="wip" value="<?= (($tag == 'edit') ? $qc['wip'] : '')  ?>" placeholder="WIP" required>
@@ -92,17 +99,17 @@
                                         </div>
                                         <div class="col-lg-4 mb-2">
                                             <div class="form-group">
-                                                <label class="text-label text-white">AVG Division( based on current platform)*</label>
-                                                <input type="text" class="form-control" value="<?= (($tag == 'edit') ? $qc['avg_division'] : '')  ?>" name="avg_division" placeholder="AVG Division" required>
+                                                <label class="text-label text-white">AVG company( based on current platform)*</label>
+                                                <input type="text" class="form-control" value="<?= (($tag == 'edit') ? $qc['avg_company'] : '')  ?>" name="avg_company" placeholder="AVG company" required>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-2">
+                                        </div> -->
+                                        <div class="col-lg-4 mb-2">
                                             <div class="form-group">
                                                 <label class="text-label text-white">Rejection % *</label>
                                                 <input type="text" class="form-control" id="rejection" value="<?= (($tag == 'edit') ? $qc['rejection'] : '')  ?>" placeholder="Rejection %" name="rejection" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-2">
+                                        <div class="col-lg-4 mb-2">
                                             <div class="form-group">
                                                 <label class="text-label text-white">Success % *</label>
                                                 <input type="text" class="form-control" id="success" value="<?= (($tag == 'edit') ? $qc['success'] : '')  ?>" placeholder="Success %" name="success" readonly>
@@ -123,6 +130,37 @@
     </div>
     <!-- required vendors -->
     <?php $this->load->view('template/footer_link'); ?>
+    <script>
+        // jQuery Function
+        getquantity();
+
+        function getquantity() {
+            var date = $('#date').val();
+            var companyId = $('input[name="company_id"]').val();
+
+            // console.log(date);
+            // console.log(companyId);
+            $.ajax({
+                url: '<?= base_url('Admin_Dashboard/get_quantity') ?>',
+                method: 'POST',
+                data: {
+                    date: date,
+                    company_id: companyId
+                },
+                success: function(response) {
+                    $('#quantity').val(response);
+                    // console.log('sadsa' + response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        $('#date').on('change', function() {
+            getquantity();
+        });
+    </script>
     <script>
         // Function to calculate and update the values
         function updateValues() {

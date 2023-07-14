@@ -14,8 +14,8 @@
                                 $this->session->unset_userdata('msg'); ?>
                             <div class="card-header">
                                 
-                                <h4 class="card-title">Division List</h4>
-                                <a href="<?= base_url('division-add') ?>" class="btn btn-success btn-sm">Add division <i class="fa fa-plus"></i></a>
+                                <h4 class="card-title">company List</h4>
+                                <a href="<?= base_url('company-add') ?>" class="btn btn-success btn-sm">Add company <i class="fa fa-plus"></i></a>
                                
                             </div>
 
@@ -32,11 +32,11 @@
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            if (!empty($division)) {
-                                                foreach ($division as $row) {
+                                            if (!empty($company)) {
+                                                foreach ($company as $row) {
                                             ?>
 
-                                                    <tr class="division" data-id="<?= $row['did'] ?>">
+                                                    <tr class="company" data-id="<?= $row['did'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= $row['name'] ?></td>
                                                         <td><?= $row['location'] ?></td>
@@ -46,7 +46,7 @@
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
                                     </table>
@@ -65,10 +65,10 @@
 
         <script>
             $(document).ready(function() {
-                $('.division').on('click', function() {
-                    var divisionId = $(this).data('id');
+                $('.company').on('click', function() {
+                    var companyId = $(this).data('id');
 
-                    window.location.href = "<?= base_url('division-edit/') ?>" + divisionId;
+                    window.location.href = "<?= base_url('company-edit/') ?>" + companyId;
                 });
             });
         </script>

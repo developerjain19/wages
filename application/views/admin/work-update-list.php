@@ -2,7 +2,6 @@
 
 <body>
     <div id="main-wrapper">
-
         <?php $this->load->view('template/header'); ?>
         <div class="content-body">
             <div class="container-fluid">
@@ -28,12 +27,12 @@
                                                 <th>SNo</th>
                                                 <th>Date</th>
                                                 <th>Labour</th>
-                                                <th>division In</th>
-                                                <th>Division Out</th>
+                                                <th>company</th>
                                                 <th>Quantity</th>
-                                                <th>Resource Type</th>
+                                                <!-- <th>Resource Type</th> -->
                                                 <th>Wages</th>
-                                                <th>Incentive</th>
+                                                <th>FQc Accepted</th>
+                                                <th>FQc Rejected</th>
                                                 <th>Attendance</th>
                                             </tr>
                                         </thead>
@@ -42,42 +41,39 @@
                                             $i = 1;
                                             if (!empty($work)) {
                                                 foreach ($work as $row) {
-                                                    $divIn = getRowById('tbl_division', 'did', $row['division_in']);
-                                                    $divOut = getRowById('tbl_division', 'did', $row['division_out']);
+                                                    $divIn = getRowById('tbl_company', 'did', $row['company']);
+
                                                     $labour = getRowById('tbl_labour', 'eid', $row['labour']);
                                             ?>
                                                     <tr class="<?= ((sessionId('position') == '5') ? '' : 'work_update'); ?>" data-id="<?= $row['wid'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= convertDatedmy($row['create_date'])  ?></td>
-
                                                         <td><?= $labour[0]['name'] ?>
                                                         </td>
                                                         <td><?= $divIn[0]['name'] ?>
                                                         </td>
-                                                        <td><?= $divOut[0]['name'] ?>
-                                                        </td>
+
                                                         <td><?= $row['quantity'] ?>
                                                         </td>
-                                                        <td><?= $row['resource_type_name'] ?>
-                                                        </td>
+                                                        <!-- <td><?= $row['resource_type_name'] ?>
+                                                        </td> -->
                                                         <td><?= $row['wages'] ?>
                                                         </td>
-                                                        <td><?= $row['incentive'] ?>
+                                                        <td><?= $row['fqc_accepted'] ?>
                                                         </td>
-                                                        <td> <?= (($row['incentive'] == '1') ? 'Present' : (($row['incentive'] == '2') ? 'Half Day'  : 'Absent')) ?>
+                                                        <td><?= $row['fqc_rejected'] ?>
                                                         </td>
-
+                                                        <td> <?= (($row['attendance'] == '1') ? 'Present' : (($row['attendance'] == '2') ? 'Half Day'  : 'Absent')) ?>
+                                                        </td>
                                                     </tr>
-
                                             <?php
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
                                     </table>
-
                                     </tbody>
                                     </table>
                                 </div>
@@ -93,7 +89,6 @@
             $(document).ready(function() {
                 $('.work_update').on('click', function() {
                     var work_updateId = $(this).data('id');
-
                     window.location.href = "<?= base_url('work-update-edit/') ?>" + work_updateId;
                 });
             });

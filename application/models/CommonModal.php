@@ -218,6 +218,21 @@ class CommonModal extends CI_Model
       return false;
     }
   }
+  public function getRowOrderLimit($table, $where, $orderColumn, $orderType, $limit,$offset)
+  {
+    $get = $this->db
+      ->select()
+      ->from($table)
+      ->where($where)
+      ->order_by($orderColumn, $orderType)
+      ->limit($limit, $offset)
+      ->get();
+    if ($get->num_rows() > 0) {
+      return $get->result_array();
+    } else {
+      return false;
+    }
+  }
   function getAllDataWithLimitInOrder($table, $where, $start, $end)
   {
     $get = $this->db->select()
@@ -242,11 +257,23 @@ class CommonModal extends CI_Model
     }
   }
 
+  public function attendancerunquery($lid)
+  {
+    $query = $this->db->query("SELECT COUNT(*) AS total_records,
+    SUM(CASE WHEN `tbl_work_update`.`attendance` = '1' THEN 1 ELSE 0 END)  AS present FROM `tbl_work_update` WHERE DATE_FORMAT(`date`, '%Y-%m-%d') >= DATE_FORMAT(CURDATE() - INTERVAL DAY(CURDATE())-1 DAY, '%Y-%m-%d') AND DATE_FORMAT(`date`, '%Y-%m-%d') < DATE_FORMAT(LAST_DAY(CURDATE()) + INTERVAL 1 DAY, '%Y-%m-%d') AND labour = '" . $lid . "' ");
+    if ($query->num_rows() > 0) {
+      return $query->result_array();
+    } else {
+      return false;
+    }
+  }
+
+
   function GetRowBySum($table, $column, $where)
   {
     $get = $this->db
       ->select()
-      ->SUM($column)
+      ->select_sum($column)
       ->from($table)
       ->where($where)
       ->get();

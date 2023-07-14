@@ -1,160 +1,298 @@
 <?php $this->load->view('admin/cards'); ?>
+<div class=" form-head d-flex flex-wrap mb-4 align-items-center mt-3">
+    <div class="card-action coin-tabs mt-3 mt-sm-0">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link fs-22 active" data-bs-toggle="tab" href="#Bitcoin" role="tab" aria-selected="true">
+                    <svg class="svg-icon" width="24" height="24" viewBox="0 0 20 20" fill="#FFAB2D">
+                        <path d="M10,6.978c-1.666,0-3.022,1.356-3.022,3.022S8.334,13.022,10,13.022s3.022-1.356,3.022-3.022S11.666,6.978,10,6.978M10,12.267c-1.25,0-2.267-1.017-2.267-2.267c0-1.25,1.016-2.267,2.267-2.267c1.251,0,2.267,1.016,2.267,2.267C12.267,11.25,11.251,12.267,10,12.267 M18.391,9.733l-1.624-1.639C14.966,6.279,12.563,5.278,10,5.278S5.034,6.279,3.234,8.094L1.609,9.733c-0.146,0.147-0.146,0.386,0,0.533l1.625,1.639c1.8,1.815,4.203,2.816,6.766,2.816s4.966-1.001,6.767-2.816l1.624-1.639C18.536,10.119,18.536,9.881,18.391,9.733 M16.229,11.373c-1.656,1.672-3.868,2.594-6.229,2.594s-4.573-0.922-6.23-2.594L2.41,10l1.36-1.374C5.427,6.955,7.639,6.033,10,6.033s4.573,0.922,6.229,2.593L17.59,10L16.229,11.373z" fill="#FFAB2D"></path>
+                    </svg>
+                    Overview
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fs-22 " data-bs-toggle="tab" href="#Ethereum" role="tab" aria-selected="false">
+                    <svg width="24" height="24" class="svg-icon" viewBox="0 0 20 20" fill="#00ADA3">
+                        <path d="M15.94,10.179l-2.437-0.325l1.62-7.379c0.047-0.235-0.132-0.458-0.372-0.458H5.25c-0.241,0-0.42,0.223-0.373,0.458l1.634,7.376L4.06,10.179c-0.312,0.041-0.446,0.425-0.214,0.649l2.864,2.759l-0.724,3.947c-0.058,0.315,0.277,0.554,0.559,0.401l3.457-1.916l3.456,1.916c-0.419-0.238,0.56,0.439,0.56-0.401l-0.725-3.947l2.863-2.759C16.388,10.604,16.254,10.22,15.94,10.179M10.381,2.778h3.902l-1.536,6.977L12.036,9.66l-1.655-3.546V2.778z M5.717,2.778h3.903v3.335L7.965,9.66L7.268,9.753L5.717,2.778zM12.618,13.182c-0.092,0.088-0.134,0.217-0.11,0.343l0.615,3.356l-2.938-1.629c-0.057-0.03-0.122-0.048-0.184-0.048c-0.063,0-0.128,0.018-0.185,0.048l-2.938,1.629l0.616-3.356c0.022-0.126-0.019-0.255-0.11-0.343l-2.441-2.354l3.329-0.441c0.128-0.017,0.24-0.099,0.295-0.215l1.435-3.073l1.435,3.073c0.055,0.116,0.167,0.198,0.294,0.215l3.329,0.441L12.618,13.182z"></path fill="#00ADA3">
+                    </svg> Productivity
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="Bitcoin">
 
-<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-    <h2 class="font-w600 title mb-2 me-auto ">Divisions</h2>
-</div>
-<div class="row">
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-                
-                <h2 class="text-black mb-2 font-w600">Division 1</h2>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-                <span>50%</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-                
-                <h2 class="text-black mb-2 font-w600">Division 2</h2>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-                <span>50%</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-                
-                <h2 class="text-black mb-2 font-w600">Division 3</h2>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-                <span>50%</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 m-t35">
-        <div class="card card-coin">
-            <div class="card-body text-center">
-                
-                <h2 class="text-black mb-2 font-w600">Division 4</h2>
-                <div class="progress mb-2">
-                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                </div>
-                <span>50%</span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="bg-success coin-holding flex-wrap">
-                            <div class="mb-2 coin-bx">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M30.5437 0.00501883C13.9681 -0.294993 0.305031 12.893 0.00501883 29.4562C-0.294993 46.0194 12.893 59.6949 29.4562 59.9949C46.0194 60.2949 59.6949 47.1069 59.9949 30.5312C60.2949 13.9681 47.1069 0.29253 30.5437 0.00501883ZM29.5562 54.3697C16.1182 54.1197 5.38023 42.9942 5.63024 29.5562C5.86775 16.1182 16.9932 5.38023 30.4312 5.61774C43.8818 5.86775 54.6072 16.9932 54.3697 30.4312C54.1322 43.8693 42.9942 54.6072 29.5562 54.3697Z" fill="white" />
-                                            <path d="M30.3962 8.12284C18.3333 7.91034 8.34535 17.5482 8.13284 29.6112C7.90784 41.6617 17.5457 51.6496 29.6087 51.8746C41.6717 52.0871 51.6596 42.4492 51.8721 30.3987C52.0846 18.3358 42.4592 8.34785 30.3962 8.12284ZM30.0025 14.3581L36.954 26.7598L30.61 23.2297C30.2312 23.0197 29.7725 23.0197 29.3937 23.2297L23.0497 26.7598L30.0025 14.3581ZM30.0025 45.6381L23.0497 33.2364L29.3937 36.7665C29.5825 36.8715 29.7925 36.924 30.0012 36.924C30.21 36.924 30.42 36.8715 30.6087 36.7665L36.9528 33.2364L30.0025 45.6381ZM30.0025 34.2426L22.3722 29.9975L30.0025 25.7523L37.6315 29.9975L30.0025 34.2426Z" fill="white" />
-                                        </svg>
+       <div class="row">
+            <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+
+                <?php
+                $i = 1;
+                if ($alllabour != '') {
+                    echo '<div class="cards-box">';
+
+                    foreach ($alllabour as $lab) {
+                        $attendance  =  $this->CommonModal->getRowByMoreId('tbl_work_update', array('labour' => $lab['eid'], 'date' => date('Y-m-d')))[0];
+                        $percent  =  $this->CommonModal->attendancerunquery($lab['eid'])[0];
+                        $daysInMonth = date('t');
+                        $per =   ($percent['present'] / $daysInMonth) * 100;
+                ?>
+
+                        <div class="card">
+                            <div class="content-placeholder">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="noti-content">
+                                            <div class="text-content">
+                                                <h4 class="">Attendance</h4>
+                                                <p><?= $lab['name']  ?></p>
+                                            </div>
+                                            <p class="lh-0"><b>Status</b> - <?= (($attendance['attendance'] == '1') ? 'Present' : (($attendance['attendance'] == '2') ? 'Half Day'  : 'Absent')) ?></p>
+                                            </h6>
+
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="<?= number_format($per); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= number_format($per); ?>%">
+                                                    <span class="sr-only"><?= number_format($per); ?>% </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="ms-3">
-                                        <h4 class="coin-font font-w600 mb-0 text-white">Today's</h4>
-                                        <p class="mb-0 text-white op-6">Earning</p>
+                                    <div class="col-sm-1">
+                                        <div class="img"> <i class="flaticon-381-user-7 text-white"></i></div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="coin-bx-one">
-                                        <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="4.71425" height="34.5712" rx="2.35713" transform="matrix(-1 0 0 1 33 0)" fill="white" />
-                                            <rect width="4.71425" height="25.1427" rx="2.35713" transform="matrix(-1 0 0 1 23.5713 9.42853)" fill="white" />
-                                            <rect width="4.71425" height="10.9999" rx="2.35713" transform="matrix(-1 0 0 1 14.1436 23.5713)" fill="white" />
-                                            <rect width="5.31864" height="21.2746" rx="2.65932" transform="matrix(-1 0 0 1 5.31836 13.2966)" fill="white" />
-                                        </svg>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h2 class="mb-0 text-white coin-font-1">667,224</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center">
-                                    <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 13C1.91797 11.9157 4.89728 8.72772 6.5 7L12.5 10L19.5 1" stroke="#2BC155" stroke-width="2" stroke-linecap="round" />
-                                    </svg>
-                                    <p class="mb-0 ms-2 text-success">45%</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="bg-secondary coin-holding flex-wrap">
-                            <div class="mb-2 coin-bx">
-                                <div class="d-flex align-items-center">
-                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M30.5437 0.00501883C13.9681 -0.294993 0.305031 12.893 0.00501883 29.4562C-0.294993 46.0194 12.893 59.6949 29.4562 59.9949C46.0194 60.2949 59.6949 47.1069 59.9949 30.5312C60.2949 13.9681 47.1069 0.29253 30.5437 0.00501883ZM29.5562 54.3697C16.1182 54.1197 5.38023 42.9942 5.63024 29.5562C5.86775 16.1182 16.9932 5.38023 30.4312 5.61774C43.8818 5.86775 54.6072 16.9932 54.3697 30.4312C54.1322 43.8693 42.9942 54.6072 29.5562 54.3697Z" fill="white" />
-                                        <path d="M30.3962 8.12284C18.3333 7.91034 8.34535 17.5482 8.13284 29.6112C7.90784 41.6617 17.5457 51.6496 29.6087 51.8746C41.6717 52.0871 51.6596 42.4492 51.8721 30.3987C52.0846 18.3358 42.4592 8.34785 30.3962 8.12284ZM30.0025 14.3581L36.954 26.7598L30.61 23.2297C30.2312 23.0197 29.7725 23.0197 29.3937 23.2297L23.0497 26.7598L30.0025 14.3581ZM30.0025 45.6381L23.0497 33.2364L29.3937 36.7665C29.5825 36.8715 29.7925 36.924 30.0012 36.924C30.21 36.924 30.42 36.8715 30.6087 36.7665L36.9528 33.2364L30.0025 45.6381ZM30.0025 34.2426L22.3722 29.9975L30.0025 25.7523L37.6315 29.9975L30.0025 34.2426Z" fill="white" />
-                                    </svg>
-                                    <div class="ms-3">
-                                        <h4 class="coin-font font-w600 mb-0 text-white">Today's</h4>
-                                        <p class="mb-0 text-white">Bill</p>
+
+
+
+                <?php
+                    }
+                    echo '</div>';
+                }
+                ?>
+
+            </div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+
+                <?php
+                $i = 1;
+                $date = date('Y-m-d');
+                if ($company != '') {
+                    echo '<div class="cards-box">';
+
+                    foreach ($company as $com) {
+
+                        $weight =  $this->CommonModal->runQuery("SELECT SUM(`fqc_accepted`) as qty FROM `tbl_work_update` WHERE DATE_FORMAT(`date`, '%Y-%m-%d') = '" . $date . "' AND company = '" . $com['did'] . "' ")[0];
+
+                       
+                        $raw  =  $this->CommonModal->getRowByMoreId('tbl_raw_material', array('company' => $com['company'], 'date' => date('Y-m-d')))[0];
+
+                        $dt = (($raw['raw'] != '') ? $raw['raw'] : '0') - (($weight['quantity'] != '') ? $weight['quantity'] : '0');
+   
+                        $progress =  calculatepercent((($dt > '0') ? $dt : '0'), (($weight['quantity'] != '') ? $weight['quantity'] : '0'));
+                ?>
+
+                        <div class="card">
+                            <div class="content-placeholder">
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="noti-content">
+                                            <div class="text-content">
+                                                <h4 class="">FQC Pending</h4>
+                                                <p><?= $com['name']  ?></p>
+
+                                            </div>
+                                            <p class="lh-0"><b>Pending Weight</b> - <?= (($dt != '') ? $dt : '0') ?>KG</p>
+                                            </h6>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="<?= ((number_format($progress) <= '0')  ? number_format($progress) : '0'); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= ((number_format($progress) <= '0')  ? number_format($progress) : '0'); ?>%">
+                                                    <span class="sr-only"><?= ((number_format($progress) <= '0')  ? number_format($progress) : '0'); ?>% </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="coin-bx-one">
-                                        <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="4.71425" height="34.5712" rx="2.35713" transform="matrix(-1 0 0 1 33 0)" fill="white" />
-                                            <rect width="4.71425" height="25.1427" rx="2.35713" transform="matrix(-1 0 0 1 23.5713 9.42853)" fill="white" />
-                                            <rect width="4.71425" height="10.9999" rx="2.35713" transform="matrix(-1 0 0 1 14.1436 23.5713)" fill="white" />
-                                            <rect width="5.31864" height="21.2746" rx="2.65932" transform="matrix(-1 0 0 1 5.31836 13.2966)" fill="white" />
-                                        </svg>
+                                    <div class="col-sm-1">
+                                        <div class="img"> <i class="flaticon-381-user-7 text-white"></i></div>
                                     </div>
-                                    <div class="ms-3">
-                                        <h2 class="mb-0 text-white coin-font-1">168,331.09</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center">
-                                    <svg width="29" height="22" viewBox="0 0 29 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g filter="url(#filter0_d)">
-                                            <path d="M5 4C5.91797 5.08433 8.89728 8.27228 10.5 10L16.5 7L23.5 16" stroke="#FF2E2E" stroke-width="2" stroke-linecap="round" />
-                                        </g>
-                                        <defs>
-                                            <filter id="filter0_d" x="0" y="0" width="28.5001" height="22.0001" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                                                <feOffset dy="1" />
-                                                <feGaussianBlur stdDeviation="2" />
-                                                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.180392 0 0 0 0 0.180392 0 0 0 0.61 0" />
-                                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-                                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-                                    <p class="mb-0 ms-2 text-danger">45%</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
+                <?php
+                    }
+                    echo '</div>';
+                }
+                ?>
+
             </div>
         </div>
+     
+    <?php
+    include'chart.php'; ?>
+     
+        <?php
+
+        if (!empty($company)) {
+            foreach ($company as $com) {
+
+                $counting = $this->CommonModal->runQuery("SELECT 
+               COUNT(DISTINCT tbl_labour.eid) AS TotalWorker,
+               COUNT(DISTINCT CASE WHEN tbl_work_update.create_date >= CURDATE() THEN tbl_work_update.labour END) AS PresentToday,
+               SUM(CASE WHEN tbl_work_update.create_date >= CURDATE() THEN tbl_work_update.quantity END) AS TotalFQCWeight,
+               CONCAT(ROUND((SUM(CASE WHEN tbl_work_update.create_date >= CURDATE() THEN tbl_work_update.fqc_accepted END) / SUM(CASE WHEN tbl_work_update.create_date >= CURDATE() THEN tbl_work_update.quantity END)) * 100, 2), '%') AS FQCAcceptance,
+               SUM(CASE WHEN tbl_qc_update.create_date >= CURDATE() THEN tbl_qc_update.qc_accepted END) AS QCAcceptance,
+               SUM(CASE WHEN tbl_qc_update.create_date >= CURDATE() THEN tbl_qc_update.need_to_pack END) AS NeedToPack,
+               SUM(CASE WHEN tbl_raw_material.create_date >= CURDATE() THEN tbl_raw_material.raw END) AS RawMaterialToday,
+               SUM(CASE WHEN tbl_dispatched.create_date >= CURDATE() THEN tbl_dispatched.bags_dispatched END) AS BagsToDispatch
+             FROM 
+               tbl_labour
+             LEFT JOIN 
+               tbl_work_update ON tbl_labour.eid = tbl_work_update.labour
+             LEFT JOIN 
+               tbl_qc_update ON tbl_work_update.wid = tbl_qc_update.qc_id
+             LEFT JOIN 
+               tbl_raw_material ON tbl_raw_material.company = '" . $com['did'] . "'
+             LEFT JOIN 
+               tbl_dispatched ON tbl_dispatched.company = '" . $com['did'] . "'
+             WHERE 
+               tbl_labour.company = '" . $com['did'] . "'")[0];
+
+
+        ?>
+                <div class="mt-3">
+                    <h4 class="fs-20 font-w700 my-4"><?= $com['name'] ?></h4>
+                    <div class="testimonial-one px-4 owl-left-nav owl-carousel owl-loaded owl-drag">
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Total Worker</h4>
+
+                                            <span class="price"><?= (($counting['TotalWorker'] != '') ? $counting['TotalWorker'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Present Today</h4>
+
+                                            <span class="price"><?= (($counting['PresentToday'] != '') ? $counting['PresentToday'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Total FQC Weight</h4>
+
+                                            <span class="price"><?= (($counting['TotalFQCWeight'] != '') ? $counting['TotalFQCWeight'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>FQC Acceptance</h4>
+
+                                            <span class="price"><?= (($counting['FQCAcceptance'] != '') ? $counting['FQCAcceptance'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>QC Acceptance</h4>
+
+                                            <span class="price"><?= (($counting['QCAcceptance'] != '') ? $counting['QCAcceptance'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Need To Pack</h4>
+
+                                            <span class="price"><?= (($counting['NeedToPack'] != '') ? $counting['NeedToPack'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Raw Today</h4>
+
+                                            <span class="price"><?= (($counting['RawMaterialToday'] != '') ? $counting['RawMaterialToday'] : '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="items col-sm-12">
+                            <div class="card product-grid-card">
+                                <div class="card-body">
+                                    <div class="new-arrival-product">
+                                        <div class="new-arrival-content text-center mt-3">
+                                            <h4>Begs To dispatch</h4>
+
+                                            <span class="price"><?= (($counting['BagsToDispatch'] != '') ? $counting['BagsToDispatch']: '0') ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        <?php
+            }
+        }
+        ?>
+
+
+    </div>
+    <div class="tab-pane fade" id="Ethereum">
+        
+       <?php 
+        $this->load->view('admin/admin_productivity');
+         ?>
     </div>
 </div>
-</div>
-</div>
+

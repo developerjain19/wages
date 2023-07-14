@@ -32,14 +32,14 @@
                                         <?php if (sessionId('position') == '1' || sessionId('position') == '2') { ?>
 
                                             <div class="col-sm-3">
-                                                <label>Select Division</label>
+                                                <label>Select company</label>
 
-                                                <select name="division" class="form-control">
-                                                    <option value="">Select Division </option>
+                                                <select name="company" class="form-control">
+                                                    <option value="">Select company </option>
                                                     <?php
-                                                    $division =  getAllRow('tbl_division');
-                                                    if ($division != '') {
-                                                        foreach ($division as $divi) {  ?>
+                                                    $company =  getAllRow('tbl_company');
+                                                    if ($company != '') {
+                                                        foreach ($company as $divi) {  ?>
 
                                                             <option value="<?= encryptId($divi['did']) ?>" <?= (($divi['did'] == $div) ? 'selected' : '') ?>>
                                                                 <?= $divi['name'] ?>
@@ -72,7 +72,7 @@
                                             <tr>
                                                 <th>SNo</th>
                                                 <th>Pending</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,7 +85,7 @@
                                                     <tr>
                                                         <td><?= $i ?></td>
                                                         <td><?= $row['pending'] ?>KG</td>
-                                                        <td><?= $row['division'] ?></td>
+                                                        <td><?= $row['company'] ?></td>
                                                     </tr>
                                             <?php
                                                     $i++;

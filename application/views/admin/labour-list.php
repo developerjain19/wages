@@ -33,7 +33,7 @@
                                                 <th>Reg.Date</th>
                                                 <th>Name</th>
                                                 <th>Aadhaar</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                                 <th>Contact</th>
                                                 <th>Alternate Contact</th>
                                                 <th>Address</th>
@@ -50,14 +50,14 @@
                                             if (!empty($labour)) {
                                                 foreach ($labour as $row) {
                                                     $resource = getRowById('tbl_resource_type', 'rid', $row['resourcetype']);
-                                                    $division = getRowById('tbl_division', 'did', $row['division'])
+                                                    $company = getRowById('tbl_company', 'did', $row['company'])
                                             ?>
                                                     <tr class="labour" data-id="<?= $row['eid'] ?>">
                                                         <td><?= $i ?></td>
                                                         <td><?= convertDatedmy($row['create_date'])  ?></td>
                                                         <td><img src="<?= setImage($row['image'], 'uploads/labour/') ?>" class="circelimg"> <?= $row['name'] ?></td>
                                                         <td><?= $row['adhaar'] ?></td>
-                                                        <td><?= $division[0]['name'] ?>
+                                                        <td><?= $company[0]['name'] ?>
                                                         </td>
                                                         <td><?= $row['number'] ?>
                                                         </td>
@@ -82,7 +82,7 @@
                                                     $i++;
                                                 }
                                             } else {
-                                                echo  'No data';
+                                                
                                             }
                                             ?>
                                     </table>

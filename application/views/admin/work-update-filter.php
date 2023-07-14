@@ -29,14 +29,14 @@
                                             <input type="date" id="to" class="form-control" value="<?= $to ?>" name="to" required>
                                         </div>
                                         <div class="col-sm-3">
-                                            <label>Select Division</label>
+                                            <label>Select company</label>
 
-                                            <select name="division" class="form-control">
-                                                <option value="">Select Division </option>
+                                            <select name="company" class="form-control">
+                                                <option value="">Select company </option>
                                                 <?php
-                                                $division =  getAllRow('tbl_division');
-                                                if ($division != '') {
-                                                    foreach ($division as $divi) {  ?>
+                                                $company =  getAllRow('tbl_company');
+                                                if ($company != '') {
+                                                    foreach ($company as $divi) {  ?>
 
                                                         <option value="<?= encryptId($divi['did']) ?>" <?= (($divi['did'] == $div) ? 'selected' : '') ?>>
                                                             <?= $divi['name'] ?>
@@ -65,15 +65,16 @@
                                         <thead>
                                             <tr>
                                                 <th>SNo</th>
+                                                <th>Date</th>
 
                                                 <th>Name</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                                 <th>Weight </th>
                                                 <th>Accepted </th>
                                                 <th>Rejected</th>
                                                 <th>Accepted% </th>
                                                 <th>Rejection% </th>
-                                                <th>Need to Pack</th>
+                                                <!-- <th>Need to Pack</th> -->
 
                                             </tr>
                                         </thead>
@@ -83,22 +84,24 @@
                                             if (!empty($work)) {
                                                 foreach ($work as $row) {
                                                     $divIn = getRowById('tbl_labour', 'eid', $row['labour'])[0];
-                                                    $acceptPercentage = ($row['accepted'] / $row['qty']) * 100;
-                                                    $rejectPercentage = ($row['rejected'] / $row['qty']) * 100;
-                                                    $bundleWeight = 25;
-                                                    $need_to_pack = $row['accepted'] %  $bundleWeight;
+                                                    $company = getRowById('tbl_company', 'did', $row['company'])[0];
+
+                                                    // $acceptPercentage = ($row['accepted'] / $row['qty']) * 100;
+                                                    // $rejectPercentage = ($row['rejected'] / $row['qty']) * 100;
+                                                    // $bundleWeight = 25;
+                                                    // $need_to_pack = $row['accepted'] %  $bundleWeight;
                                             ?>
                                                     <tr>
                                                         <td><?= $i ?></td>
-
+                                                        <td><?= $row['date'] ?></td>
                                                         <td><?= $divIn['name'] ?></td>
-                                                        <td><?= $row['division'] ?></td>
-                                                        <td><?= $row['qty'] ?></td>
-                                                        <td><?= $row['accepted'] ?></td>
-                                                        <td><?= $row['rejected'] ?></td>
-                                                        <td><?= $acceptPercentage ?>%</td>
-                                                        <td><?= $rejectPercentage ?>%</td>
-                                                        <td><?= $need_to_pack ?></td>
+                                                        <td><?= $company['name'] ?></td>
+                                                        <td><?= $row['quantity'] ?></td>
+                                                        <td><?= $row['fqc_accepted'] ?></td>
+                                                        <td><?= $row['fqc_rejected'] ?></td>
+                                                        <td><?= $row['success_per'] ?></td>
+                                                        <td><?= $row['rejection_per'] ?></td>
+                                                        <!-- <td><?= $need_to_pack ?></td> -->
                                                     </tr>
 
                                             <?php

@@ -9,7 +9,7 @@
                     <div class="col-lg-6">
                         <div class="card d-flex align-items-center">
                             <div class="card-header d-block w-100 text-center">
-                                <!-- <h4 class="card-title">Select Division</h4> -->
+                                <!-- <h4 class="card-title">Select company</h4> -->
                             </div>
                             <div class="card-body w-100">
                                 <div class="row">
@@ -31,7 +31,11 @@
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <a href="raw-material" class="btn btn-square btn-outline-info btnthird">Raw Material</a>
+                                            <a href="raw-material-report" class="btn btn-square btn-outline-info btnthird">Raw Material</a>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <a href="dispatched-report" class="btn btn-square btn-outline-info btnthird">Dispatch Report</a>
                                         </div>
                                     <?php } ?>
 
@@ -46,7 +50,7 @@
                                     <?php } ?>
 
                                     <!-- QC section -->
-                                   
+
                                     <?php if (sessionId('position') == '5') { ?>
 
                                         <div class="col-sm-12">

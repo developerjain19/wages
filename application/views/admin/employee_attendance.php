@@ -31,16 +31,16 @@
                                         <?php if (sessionId('position') == '1' || sessionId('position') == '2') { ?>
 
                                             <div class="col-sm-3">
-                                                <label>Select Division</label>
+                                                <label>Select company</label>
 
-                                                <select name="division" class="form-control">
-                                                    <option value="">Select Division</option>
+                                                <select name="company" class="form-control">
+                                                    <option value="">Select company</option>
                                                     <?php
-                                                    $division =  getAllRow('tbl_division');
-                                                    if ($division != '') {
-                                                        foreach ($division as $divi) {  ?>
+                                                    $company =  getAllRow('tbl_company');
+                                                    if ($company != '') {
+                                                        foreach ($company as $divi) {  ?>
 
-                                                            <option value="<?= encryptId($divi['did']) ?>" <?= (($labour[0]['division'] == $div) ? 'selected' : '') ?>>
+                                                            <option value="<?= encryptId($divi['did']) ?>" <?= (($labour[0]['company'] == $div) ? 'selected' : '') ?>>
                                                                 <?= $divi['name'] ?>
                                                             </option>
                                                     <?php
@@ -72,7 +72,7 @@
                                             <tr>
                                                 <th>SNo</th>
                                                 <th>Name</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                                 <th>Present</th>
                                                 <th>Absent</th>
                                                 <th>Attendance% </th>
@@ -84,7 +84,7 @@
                                             $i = 1;
                                             if (!empty($labour)) {
                                                 foreach ($labour as $row) {
-                                                    $divIn = getRowById('tbl_division', 'did', $row['division'])[0];
+                                                    $divIn = getRowById('tbl_company', 'did', $row['company'])[0];
 
                                                     $all_data = $this->CommonModal->runQuery("SELECT SUM(CASE WHEN attendance = '0' THEN 1 ELSE 0 END) AS total_absent, SUM(CASE WHEN attendance = '1' THEN 1 ELSE 0 END) AS total_present, (SUM(CASE WHEN attendance = '1' THEN 1 ELSE 0 END) / COUNT(attendance)) * 100 AS attendance_percentage FROM tbl_work_update WHERE DATE_FORMAT(create_date, '%Y-%m-%d') BETWEEN '" . $from . "' AND '" . $to . "' AND `labour` = '" . $row['eid'] . "'");
                                             ?>

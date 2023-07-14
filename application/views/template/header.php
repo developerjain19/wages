@@ -71,7 +71,7 @@
 
 										<div>
 											<input type="radio" id="javascript" name="switchacc" value="3" class="form-check-input rediobuttons" <?= ((sessionId('position') == '3') ? 'checked' : '') ?>>
-											<span class="rediofont" for="javascript">HR</span>
+											<span class="rediofont" for="javascript">Team Leader</span>
 										</div>
 
 
@@ -122,6 +122,32 @@
 										</div>
 									</a>
 								</li>
+								<li>
+									<a href="<?= base_url('dispatch-add') ?>">
+										<div class="d-flex bd-highlight">
+											<div class="user_info">
+												<span>Dispatch</span>
+											</div>
+											<div class="ms-auto">
+												<i class="fa fa-arrow-right"></i>
+
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="<?= base_url('raw-material-add') ?>">
+										<div class="d-flex bd-highlight">
+											<div class="user_info">
+												<span>Raw Material</span>
+											</div>
+											<div class="ms-auto">
+												<i class="fa fa-arrow-right"></i>
+
+											</div>
+										</div>
+									</a>
+								</li>
 							<?php
 							}
 							?>
@@ -141,10 +167,10 @@
 
 							<?php if (sessionId('position') == '1' || sessionId('position') == '2') { ?>
 								<li>
-									<a href="<?= base_url('division-list') ?>">
+									<a href="<?= base_url('company-list') ?>">
 										<div class="d-flex bd-highlight">
 											<div class="user_info">
-												<span>Division List</span>
+												<span>Company List</span>
 
 											</div>
 											<div class="ms-auto">
@@ -160,6 +186,21 @@
 										<div class="d-flex bd-highlight">
 											<div class="user_info">
 												<span>Resource Type</span>
+
+											</div>
+											<div class="ms-auto">
+												<i class="fa fa-arrow-right"></i>
+
+											</div>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="<?= base_url('incentive-range-list') ?>">
+										<div class="d-flex bd-highlight">
+											<div class="user_info">
+												<span>Incentives</span>
 
 											</div>
 											<div class="ms-auto">

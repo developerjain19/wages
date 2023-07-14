@@ -32,14 +32,14 @@
                                         <?php if (sessionId('position') == '1' || sessionId('position') == '2') { ?>
 
                                             <div class="col-sm-3">
-                                                <label>Select Division</label>
+                                                <label>Select company</label>
 
-                                                <select name="division" class="form-control">
-                                                    <option value="">Select Division </option>
+                                                <select name="company" class="form-control">
+                                                    <option value="">Select company </option>
                                                     <?php
-                                                    $division =  getAllRow('tbl_division');
-                                                    if ($division != '') {
-                                                        foreach ($division as $divi) {  ?>
+                                                    $company =  getAllRow('tbl_company');
+                                                    if ($company != '') {
+                                                        foreach ($company as $divi) {  ?>
 
                                                             <option value="<?= encryptId($divi['did']) ?>" <?= (($divi['did'] == $div) ? 'selected' : '') ?>>
                                                                 <?= $divi['name'] ?>
@@ -72,7 +72,7 @@
                                             <tr>
                                                 <th>SNo</th>
                                                 <th>Date</th>
-                                                <th>Division</th>
+                                                <th>company</th>
                                                 <th>Total Weight </th>
                                                 <th>Accepted </th>
                                                 <th>Rejected</th>
@@ -80,8 +80,8 @@
                                                 <th>Rejection% </th>
                                                 <th>Bags created </th>
                                                 <th>Pending</th>
-                                                <th>FC Rejected</th>
-                                                <th>QC Weight</th>
+                                                <!-- <th>FC Rejected</th>
+                                                <th>QC Weight</th> -->
 
                                             </tr>
                                         </thead>
@@ -90,7 +90,7 @@
                                             $i = 1;
                                             if (!empty($qc)) {
                                                 foreach ($qc as $row) {
-                                                    $divIn = getRowById('tbl_division', 'did', $row['division_id'])[0];
+                                                    $divIn = getRowById('tbl_company', 'did', $row['company_id'])[0];
                                             ?>
                                                     <tr>
                                                         <td><?= $i ?></td>
@@ -103,8 +103,8 @@
                                                         <td><?= $row['rejection'] ?>%</td>
                                                         <td><?= $row['packed'] ?></td>
                                                         <td><?= $row['need_to_pack'] ?></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <!-- <td></td>
+                                                        <td></td> -->
                                                     </tr>
 
                                             <?php

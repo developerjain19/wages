@@ -23,6 +23,7 @@
 	<link href="<?= base_url() ?>assets/admin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="<?= base_url() ?>assets/admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 	
+	
 	<link rel="stylesheet" href="../../cdn.jsdelivr.net/npm/bootstrap%405.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous" />
 </head>
 
